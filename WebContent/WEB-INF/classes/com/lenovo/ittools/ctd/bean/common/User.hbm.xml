@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.lenovo.ittools.ctd.bean.common.User" table="ctduser">
+		<id name="instkey" column="instkey" type="string">
+			  <generator class="assigned" />
+		</id>
+		
+		<property name="username"  type="string"></property>
+		<property name="mailbox"  type="string"></property>
+		<property name="role"  type="string"></property>
+		<property name="employeeid"  type="integer"></property>
+		<property name="description"  type="string"></property>
+		<property name="password"  type="string"></property>
+		<property name="live"  type="integer"></property>
+		<property name="activeCode"  type="string"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.lenovo.ittools.ctd.bean.testcase.TestCaseInfo" table="ctdcaseinfo">
+		<id name="caseInfoInstkey" column="caseinfoinstkey" type="string">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="caseInstkey"  type="string"></property>
+		<property name="componerOwner" type="string"></property>
+		<property name="automation"  type="string"></property>
+		<property name="hardwareInfo"  type="string"></property>
+		<property name="languageComment"  type="string"></property>
+		<property name="comments"  type="string"></property>
+		<property name="executeTime"  type="integer"></property>
+		<property name="modifyReason"   type="string"></property>
+		<property name="funcId"   type="integer"></property>
+		<property name="testModeId"   type="integer"></property>
+		<property name="brandId"    type="integer"></property>
+		<property name="osId"   type="integer"></property>
+		<property name="introduction"    type="string"></property>
+	
+	</class>
+</hibernate-mapping>

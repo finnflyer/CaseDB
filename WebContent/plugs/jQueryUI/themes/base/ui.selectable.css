@@ -1,0 +1,19 @@
+/* 
+ * Note: While Microsoft is not the author of this file, Microsoft is 
+ * offering you a license subject to the terms of the Microsoft Software 
+ * License Terms for Microsoft ASP.NET Model View Controller 3. 
+ * Microsoft reserves all other rights. The notices below are provided 
+ * for informational purposes only and are not the license terms under 
+ * which Microsoft distributed this file. 
+ * 
+ * jQuery UI Selectable 1.8.11 
+ * 
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about) 
+ * 
+ * http://docs.jquery.com/UI/Selectable#theming 
+ */ 
+.ui-selectable-helper { position: absolute; z-index: 100; border:1px dotted black; }
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
