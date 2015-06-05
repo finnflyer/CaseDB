@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.lenovo.ittools.ctd.bean.testcase.TestCaseContent" table="ctdcasecontent">
+		<id name="caseContentInstkey" column="casecontentinstkey" type="string">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="caseInstkey"  type="string"></property>
+		<property name="orderId" type="integer"></property>
+		<property name="caseLevel"  type="string"></property>
+		<property name="testItem"  type="string"></property>
+		<property name="testStep"  type="string"></property>
+		<property name="testResult"  type="string"></property>
+		<property name="stepTime"  type="integer"></property>
+		<property name="comments"   type="string"></property>
+
+	</class>
+</hibernate-mapping>

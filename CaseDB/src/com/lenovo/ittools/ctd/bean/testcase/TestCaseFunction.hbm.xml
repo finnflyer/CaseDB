@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.lenovo.ittools.ctd.bean.testcase.TestCaseFunction" table="ctdcasefunction">
+		<id name="functionId" column="functionid" type="integer">
+			<generator class="increment"></generator>
+		</id>
+		<property name="functionCato"  type="string"></property>
+		
+	</class>
+</hibernate-mapping>
