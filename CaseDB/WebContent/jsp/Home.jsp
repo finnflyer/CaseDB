@@ -30,13 +30,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="container bgtest">
 </div>
-<br><br>
+<br>
+<div class="container">
+<div class="row">
+<div class="col-lg-10">
+</div>
+<div class="col-lg-2">
+		<a class="btn btn-info" href="<%=basePath %>index.jsp" role="button">Log Out</a>
+		</div>
+</div>
+</div>
+<br>
 <div class="container ">
 	<div class="row">
+		
 		<div class="col-lg-3">
+		
 		<a href="phase4/TestCaseHome">
 			<img src="img/testcase.png" class="img-thumbnail" style="width:250px"></img>
 			</a>
+			
 			<br><br>
 			<a href="<%=basePath%>phase4/TestCaseHome">
 		<h3  class="text-center">

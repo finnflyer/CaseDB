@@ -25,7 +25,9 @@
 				<action name="UpdateRole" class="UpdateRole">
 				<result name="success">/jsp/user/RoleHome.jsp</result>
 			</action>
-		
+		<action name="Logout" class="logoutAction">
+			<result name="success">/index.jsp</result>
+		</action>
 	</package>
 	<package name="downFile" extends="struts-default" namespace="/download">
 		<action name="getPictureForAjax" class="ShowPicture"></action>
@@ -39,6 +41,7 @@
 		<global-exception-mappings>
 			<exception-mapping result="exceptionPage" name="exceptionPage" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings> -->
+		
 	  <action name="Home" class="Home">
 			<result name="success">/jsp/Home.jsp</result>
 			<result name="error">/jsp/common/error.jsp</result>

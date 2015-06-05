@@ -89,6 +89,9 @@
 	<bean id="loginAction" class="com.lenovo.ittools.ctd.action.common.LoginAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
+	<bean id="logoutAction" class="com.lenovo.ittools.ctd.action.common.LogoutAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
 	<bean id="registerAction" class="com.lenovo.ittools.ctd.action.common.Register" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>

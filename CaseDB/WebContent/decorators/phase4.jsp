@@ -48,6 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li><a href="<%=basePath%>phase4/TestCaseHome">Test Case</a></li>
             <li><a href="<%=basePath%>phase4/preTestPlan">Test Plan</a></li>
             <li><a href="<%=basePath%>jsp/user/RoleHome.jsp">Role Management</a>
+            <li><a href="<%=basePath %>index.jsp">Log out</a>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
