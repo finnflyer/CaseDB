@@ -51,6 +51,7 @@ public class LoginAction extends ActionSupport {
 	    }else{
 	    	userInfo.setUserID(user.getInstkey());
 	    	userInfo.setUserName(userName);
+	    	userInfo.setRole(user.getRole());
 	       	session.setAttribute("userInfo", userInfo);
 	    	
 	    }

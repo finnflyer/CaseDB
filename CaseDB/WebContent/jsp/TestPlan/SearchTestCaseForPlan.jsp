@@ -139,7 +139,7 @@ function createTestPlanDlg(){
 		$("#NewTestPlanForm").dialog("open");
 }
 function openSolutionDlg(){
-	 console.info("2323");
+	 //console.info("2323");
 	  var checkbox = document.getElementsByName("scriptid");
 	  var checklist = 0;
 	  for(var i=0;i<checkbox.length;i++) {
@@ -151,16 +151,16 @@ function openSolutionDlg(){
 		  alert("please select one case");
 		  return;
 	  }
-	  $("#TestPlanForm").dialog({
+	  $("#NewTestPlanForm").dialog({
 			height : 400,
-			width : 500,
+			width : 800,
 			modal : true
 		});
 	  var radios = document.getElementsByName("testPlanInstkey"); 
 	  for(var i=0;i<radios.length;i++) {
 		   radios[i].checked=false;
 	  }
-		$("#TestPlanForm").dialog("open");  
+		$("#NewTestPlanForm").dialog("open");
   }
   
   function selectAll(){
@@ -316,9 +316,12 @@ function openSolutionDlg(){
                <s:hidden name="searchflag" value="1" />
             		<s:submit cssClass="btn btn-primary" value="Search"></s:submit>   &nbsp;&nbsp;
             </td>
+            
             <td>
+           <s:if test="#session.userInfo.userName !='tester'">
                <button id="findTestPlan" class="btn btn-warn" type="button" onclick="openSolutionDlg();";>Save to New Test Plan
 	      	</button>
+	      	</s:if>
             </td>
             </tr>
          

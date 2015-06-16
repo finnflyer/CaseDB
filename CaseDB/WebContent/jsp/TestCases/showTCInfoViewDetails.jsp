@@ -126,6 +126,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </script>
 <div class="col-lg-offset-9  " class="btn-toolbar" role="toolbar" >
+<s:if test="#session.userInfo.userName !='tester' ">
+	<s:if test="#session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Administrator'">
 				  <div class="btn-group">
   					<button id="EditCase" class="btn btn-warn" type="button" onclick="EditCaseStepOne()";>Edit Test Case </button>
 	      		
@@ -134,7 +136,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<button id="DeleteTestCase" class="btn btn-warn" type="button" onclick="DeleteCase();">Delete Test Case
 	      			</button>
   					</div>   
+  					</s:if> 
+  	</s:if>
 				    </div>	
+				    
  <div class="row-fluid">
 	
 
