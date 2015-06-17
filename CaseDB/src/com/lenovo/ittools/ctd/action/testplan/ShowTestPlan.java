@@ -35,11 +35,14 @@ public class ShowTestPlan extends ActionSupport{
 		  int total=0;
 		  for(TestPlanContent temp:tpContentList){
 			  SearchCaseBean scb = scService.findSearchCaseBeanByCaseInstkey(temp.getTestCaseInstkey());
-			  TestCaseInfo testcaseInfo = tcService.findTestCaseInfoByCaseInstkey(temp.getTestCaseInstkey());
-			  total = total + testcaseInfo.getExecuteTime();
-			  scb.setTpOrder(temp.getTpOrder());
-			  SearchBeanCatoSetting(scb);
-			  contentList.add(scb);
+			  if(scb!=null){
+				  TestCaseInfo testcaseInfo = tcService.findTestCaseInfoByCaseInstkey(temp.getTestCaseInstkey());
+				  total = total + testcaseInfo.getExecuteTime();
+				  scb.setTpOrder(temp.getTpOrder());
+				  SearchBeanCatoSetting(scb);
+				  contentList.add(scb);
+			  }
+			
 		  }
 		  totalTime = String.valueOf(total);
 		  return SUCCESS;

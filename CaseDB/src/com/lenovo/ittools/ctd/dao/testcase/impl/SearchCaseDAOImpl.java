@@ -57,7 +57,11 @@ public class SearchCaseDAOImpl extends HibernateDaoSupport implements SearchCase
 	}
 	public SearchCaseBean findSearchCaseBeanByCaseInstkey(String caseInstkey) {
 		 String hqlString = "from SearchCaseBean as scb where scb.caseInstkey='"+caseInstkey+"'";
-		 return (SearchCaseBean) this.getHibernateTemplate().find(hqlString).get(0);
+		 List list = this.getHibernateTemplate().find(hqlString);
+		 if(list.size()>0){
+			 return (SearchCaseBean) this.getHibernateTemplate().find(hqlString).get(0);
+		 }
+		return null;
 	}
 	
 }
