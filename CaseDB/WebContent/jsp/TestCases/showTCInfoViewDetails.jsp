@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <div class="col-lg-offset-9  " class="btn-toolbar" role="toolbar" >
 <s:if test="#session.userInfo.userName !='tester' ">
-	<s:if test="#session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Administrator'">
+	<s:if test="#session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Admin'">
 				  <div class="btn-group">
   					<button id="EditCase" class="btn btn-warn" type="button" onclick="EditCaseStepOne()";>Edit Test Case </button>
 	      		

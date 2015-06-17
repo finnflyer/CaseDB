@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            	  
             <s:submit cssClass="btn btn-primary" value="Search"></s:submit>   &nbsp;&nbsp;
             <s:if test="#session.userInfo.userName != 'tester'">
-            <s:if test="#session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Administrator' ||#session.userInfo.Role =='PA Team Lead'">
+            <s:if test="#session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Admin' ||#session.userInfo.Role =='PA Team Lead'">
            		 <button id="newCase" class="btn btn-warn" type="button" onclick="NewCase()";>New Test Case
 	      		</button>
 	      	</s:if>
