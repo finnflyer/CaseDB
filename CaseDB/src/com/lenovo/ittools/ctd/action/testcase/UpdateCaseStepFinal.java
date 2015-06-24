@@ -61,6 +61,7 @@ public class UpdateCaseStepFinal extends ActionSupport {
 				while ((len = fis.read(buffer)) > 0) {
 					fos.write(buffer, 0, len);
 				}
+				fos.close();
 				PictureBean cp = new PictureBean();
 				cp.setType(0);
 				cp.setFilePath(savePath + "\\" + filename + '.' + surfix);

@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     		     	     <a href='javascript:void(0);' onclick='moveDown(this);'><img src='common/images/arrow_down.gif' height='16' width='16' alt='Down'/></a>
 	     		     	    </td>
  	     			<td >
- 	     			        <s:select  list="{'P1','P2','P3'}" value='testcasecontent[%{#st.index}].caseLevel' cssStyle="width:100%" name='testcasecontent[%{#st.index}].caseLevel' theme='simple'/> 
+ 	     			        <s:select  list="{'P1','P2','P3'}" value='%{testcasecontent[#st.index].caseLevel}' cssStyle="width:100%" name='testcasecontent[%{#st.index}].caseLevel' theme='simple'/> 
  	     			</td>
 	     		    <td>
 	     		    		<s:textarea  value='%{testcasecontent[#st.index].testItem}' name='testcasecontent[%{#st.index}].testItem'  rows='4'  cssStyle="width:100%" theme='simple'/> 

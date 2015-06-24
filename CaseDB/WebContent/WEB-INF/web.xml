@@ -25,7 +25,9 @@
 		<filter-name>CTD2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
-
+<session-config> 
+   <session-timeout>1440</session-timeout> 
+</session-config>
 	<filter-mapping>
 		<filter-name>CTD2</filter-name>
 		<url-pattern>/*</url-pattern>
