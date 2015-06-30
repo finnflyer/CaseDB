@@ -27,19 +27,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   }
 		  );
  function  replaceItemTableBlank(){
+ 
+ 	   var history=document.getElementById("history");
+  		var historyCom=history.innerHTML;
+  		var regx=new RegExp("&lt;br&gt;","g");
+  		if(historyCom!=""){
+  				historyCom = historyCom.replace(regx," <br/>");
+  				history.innerHTML = historyCom;
+  		}
+  		  var lan=document.getElementById("lanCom");
+  		var lanCom=lan.innerHTML;
+  	
+  		if(lanCom!=""){
+  				lanCom = lanCom.replace(regx," <br/>");
+  				lan.innerHTML = lanCom;
+  		}
     	var testTable=document.getElementById("TCItems");
     	var rows     = testTable.rows;
-    			   console.info("start");
-    	 for(var i=1;i<rows.length;i++){
+       	 for(var i=1;i<rows.length;i++){
     		 for(var j=0;j<rows[i].cells.length;j++){
     			 if(j==4){
     			 }
     			 else{   	
-    					 var temp=rows[i].cells[j].innerHTML;
-    							
+    					 var temp=rows[i].cells[j].innerHTML;					
         				 var regBr=new RegExp("&lt;br&gt;","g");
         				 temp = temp.replace(regBr,"<br\>");
-        			
         				 rows[i].cells[j].innerHTML = temp; 
     			 }
     		 }
@@ -173,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      </tr>
                      <tr>
 				    <td class="active">Modify Reason:</td>
-		    		<td colspan="7" > <s:property value="testCaseInfo.modifyReason" /></td>
+		    		<td id="history" colspan="7" > <s:property value="testCaseInfo.modifyReason" /></td>
 				    </tr>
             </table>
               <legend style="font-size:16px">2 - Language and HW Support :</legend>
@@ -228,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	                  </tr>
             				</table>           			 
             			 </td>
-            			   <td > <s:property value="testCaseInfo.languageComment"  /></td>
+            			   <td id='lanCom'> <s:property value="testCaseInfo.languageComment"  /></td>
             		</tr>       	
             	</tbody>
             </table>

@@ -38,7 +38,6 @@ function basicTest(){
 			document.getElementById("tcContent["+i+"].stepTime").value=time;
 	  }
 	  globalresult=2;
-	 
 		  if (globalresult==0){return false;}
 		  return 2;
 }

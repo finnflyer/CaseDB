@@ -28,6 +28,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<script type="text/javascript" src="<%=basePath%>plugs/jQueryUI/ui/jquery.blockUI.js"></script>
    	<link rel="stylesheet" type="text/css" href="<%=basePath%>plugs/jQueryUI/themes/base/ui.all.css">
 <script type="text/javascript">
+function submitValidation(){
+ 	var catoSelect = document.getElementsByName("mapFunction");
+ 	var list = 0;
+ 	for(var i = 0;i<catoSelect.length;i++){
+ 		if(catoSelect[i].checked){
+ 				list +=1;
+ 		}
+ 	}
+ 	if(list ==0){
+ 		alert("Please select on Category!");
+ 		return false;
+ 	}
+}
+
 $(document).ready(function() {
 		 var allselect = document.getElementsByName("AllSelect");
   	    console.info(allselect);
@@ -247,7 +261,7 @@ function openSolutionDlg(){
 		<div class="col-offset-lg-9">
 		
 		<H3 style="color:red">Advanced Search</H3>
-		<s:form action="phase4/SearchTestCaseForPlan"  cssClass=" form-inline"  theme="simple" >
+		<s:form action="phase4/SearchTestCaseForPlan"  cssClass=" form-inline"  onsubmit="return submitValidation();"  theme="simple" >
             <table class="table">
             	<tr>
             		<td width="120px" style="font-weight:bold">System Brand</td>
