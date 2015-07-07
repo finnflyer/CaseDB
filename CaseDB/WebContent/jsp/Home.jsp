@@ -36,6 +36,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="col-lg-10">
 </div>
 <div class="col-lg-2">
+			<s:if test="#session.userInfo.Role =='Leader' || #session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Admin' || #session.userInfo.Role =='Family Owner'">
+		<a class="btn btn-info" href="<%=basePath%>jsp/user/RoleHome.jsp" role="button">Role</a>
+	</s:if>
 		<a class="btn btn-info" href="<%=basePath %>index.jsp" role="button">Log Out</a>
 		</div>
 </div>
@@ -57,25 +60,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</p>
 		</div>
 		<div class="col-lg-3">
-				<a href="<%=basePath%>phase4/preTestPlan">
+				<a href="<%=basePath%>phase4/TestPlanHome">
 				<img src="img/testplan.jpg" class="img-thumbnail" style="width:250px;height:162px">
 				</a>
 				</img>
 				<br><br>
 	<h3  class="text-center"> 
-		<a href="">Test Plan </a></h3>
+		<a href="<%=basePath%>phase4/TestPlanHome">Test Plan </a></h3>
 		</div>
 		<div class="col-lg-3">
-				<img src="img/help.png" class="img-thumbnail" style="width:250px;height:162px"></img>
+		<a href="<%=basePath%>phase4/Help">
+				<img src="img/help.png" class="img-thumbnail" style="width:250px;height:162px"></a></img>
 				<br><br>
 	<h3  class="text-center"> 
-		Help </h3>
+		<a href="<%=basePath%>phase4/Help">Help</a> </h3>
 		</div>
 		<div class="col-lg-3">
-				<img src="img/more.png" class="img-thumbnail" style="width:250px;height:162px"></img>
+			<a href="<%=basePath%>phase4/TestToolHome">
+				<img src="img/more.png" class="img-thumbnail" style="width:250px;height:162px"></a></img>
 				<br><br>
-	<h3  class="text-center"> 
-		More</h3>
+	<h3  class="text-center"> <a href="<%=basePath%>phase4/TestToolHome">
+		More</a></h3>
 		</div>
 		
 		

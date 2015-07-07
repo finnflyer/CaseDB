@@ -1,7 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%
 String path = request.getContextPath();
@@ -48,10 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li><a href="<%=basePath%>phase4/Home">Home</a></li>
             <li><a href="<%=basePath%>phase4/TestCaseHome">Test Case</a></li>
             <li><a href="<%=basePath%>phase4/preTestPlan">Test Plan</a></li>
-        	
-            <li><a href="<%=basePath%>jsp/user/RoleHome.jsp">Role Management</a>
+ 			
+            <li><a href="<%=basePath%>phase4/TestToolHome">Tools</a>
             </li>
-     
+
             <li><a href="<%=basePath %>index.jsp">Log out</a>
         </div><!--/.nav-collapse -->
       </div>

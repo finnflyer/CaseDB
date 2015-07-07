@@ -1,5 +1,7 @@
 package com.lenovo.ittools.ctd.action.testcase;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,6 +24,11 @@ import com.lenovo.ittools.ctd.util.Generator;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UpdateCaseStepFinal extends ActionSupport {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(UpdateCaseStepFinal.class);
+
 	private String caseInstkey;
 	private String caseInfoInstkey;
 	private TestCaseService tcService;
@@ -34,6 +41,7 @@ public class UpdateCaseStepFinal extends ActionSupport {
 	private String savePath;
 
 	public String execute() throws Exception {
+		logger.info("Test case content item "+tcContent.size());
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
@@ -70,7 +78,7 @@ public class UpdateCaseStepFinal extends ActionSupport {
 				pictureBeanList.add(cp);
 			}
 		}
-
+		
 		/**
 		 * @author Chill Huang 2012-6-23
 		 * @description update test case content by two ways a, if new test

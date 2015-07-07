@@ -69,14 +69,11 @@ function changeID(){
 		</div>
 		<div class="col-lg-10">
 	   <s:form class="form-horizontal" id="editForm" action="phase4/UpdateTestPlan" style="margin: 0;">
-	   
-	   <s:hidden name="testPlanInstkey" value="%{testPlanInstkey}"></s:hidden>
-	       	  <div class="col-lg-offset-8  " class="btn-toolbar" role="toolbar" >
-				     <div>
-  						<s:submit type="button" cssClass="btn btn-primary" value="Update"></s:submit>
-  					</div>	    
-  				</div>
+					<s:submit type="button" cssClass="btn btn-primary" value="Update"></s:submit>		
+     <s:hidden name="testPlanInstkey" value="%{testPlanInstkey}"></s:hidden>
 	     <table class="table table table-bordered table-striped" id="test" style="table-layout:fixed">
+	     		 
+	     	   <br>
     		<thead>
     		<tr>
     		     <th class="info" width="4%"> </th>

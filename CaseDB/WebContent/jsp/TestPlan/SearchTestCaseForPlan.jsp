@@ -119,10 +119,9 @@ $(document).ready(function() {
 		  if(inkey==""){
 			  alert("Please select one Test Plan");
 		  }
-		  return;
 			$.ajax({
 				type : "POST",
-				url : "phase4/AddContentToOlderTestPlan",
+				url : "phase4/SaveContentToOlderTestPlan",
 				dataType : "html",
 				data : {
 					"testPlanInstkey": inkey,
@@ -151,6 +150,14 @@ function createTestPlanDlg(){
 		});
 		//$("#NewSolution").dialog("open");
 		$("#NewTestPlanForm").dialog("open");
+}
+function openAddDlg(){
+$("#TestPlanForm").dialog({
+			height : 400,
+			width : 800,
+			modal : true
+		});
+		$("#TestPlanForm").dialog("open");
 }
 function openSolutionDlg(){
 	 //console.info("2323");
@@ -330,9 +337,11 @@ function openSolutionDlg(){
                <s:hidden name="searchflag" value="1" />
             		<s:submit cssClass="btn btn-primary" value="Search"></s:submit>   &nbsp;&nbsp;
             </td>
-            
             <td>
-           <s:if test="#session.userInfo.userName !='tester'">
+            <buton id="addTestPlan" class="btn btn-info"  type="button" onclick="openAddDlg()";>Add to Plan</buton>
+            </td>
+            <td>
+           <s:if test="#session.userInfo.userName !='tester' ">
                <button id="findTestPlan" class="btn btn-warn" type="button" onclick="openSolutionDlg();";>Save to New Test Plan
 	      	</button>
 	      	</s:if>
@@ -352,7 +361,6 @@ function openSolutionDlg(){
 </div>
 	<div id= "TestPlanForm"  style="magrin-left:20;display:none" >
 	  		<input type="button" id="addTomyList" value="add"  />
-	  		<input type="button" id="CreateNew" value="New" onclick="createTestPlanDlg();" />
 			<table border='1'  class="tablesorter" style="width:400px">
 				<thead>
 				<tr>

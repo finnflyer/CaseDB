@@ -8,6 +8,14 @@ public class TestPlanContent {
 		private Integer tpOrder;
 		private String testCaseInstkey;
 		private Date createTime;
+		private String testCaseCode;
+		
+		public String getTestCaseCode() {
+			return testCaseCode;
+		}
+		public void setTestCaseCode(String testCaseCode) {
+			this.testCaseCode = testCaseCode;
+		}
 		public String getTestPlanInstkey() {
 			return testPlanInstkey;
 		}

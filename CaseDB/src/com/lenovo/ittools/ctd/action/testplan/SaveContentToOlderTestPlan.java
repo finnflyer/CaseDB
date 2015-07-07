@@ -1,6 +1,9 @@
 package com.lenovo.ittools.ctd.action.testplan;
 
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -8,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.jdom2.internal.SystemProperty;
 
+import com.lenovo.ittools.ctd.bean.testcase.TestCase;
 import com.lenovo.ittools.ctd.bean.testplan.TestPlanBean;
 import com.lenovo.ittools.ctd.bean.testplan.TestPlanContent;
 import com.lenovo.ittools.ctd.common.UserInfoBean;
+import com.lenovo.ittools.ctd.service.testcase.TestCaseService;
 import com.lenovo.ittools.ctd.service.testplan.TestPlanService;
 import com.lenovo.ittools.ctd.util.Generator;
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,6 +26,14 @@ public class SaveContentToOlderTestPlan  extends ActionSupport{
 		private String str;
 		private String testPlanInstkey;
 		private TestPlanService testPlanService;
+		private TestCaseService testCaseService;
+		
+		public TestCaseService getTestCaseService() {
+			return testCaseService;
+		}
+		public void setTestCaseService(TestCaseService testCaseService) {
+			this.testCaseService = testCaseService;
+		}
 		public String getStr() {
 			return str;
 		}
@@ -46,7 +60,7 @@ public class SaveContentToOlderTestPlan  extends ActionSupport{
 			String[] ary = str.split(" ");
 			int i = 1;
 			TestPlanContent tpContent = new TestPlanContent();
-			for (int list = 1; list < ary.length; list++) {
+			for (int list = 1; list < ary.length-1; list++) {
 				tpContent.setCreateTime(new Date());
 				tpContent.setTestCaseInstkey(ary[list]);
 				tpContent.setTestPlanContentInstkey(Generator.generatorID());
@@ -55,6 +69,7 @@ public class SaveContentToOlderTestPlan  extends ActionSupport{
 				testPlanService.saveTestPlanContent(tpContent);
 				i++;
 			}
+
 			HttpServletResponse resp = ServletActionContext.getResponse();
 			resp.setHeader("pragma", "no-cache");
 			resp.setHeader("cache-control", "no-cache");

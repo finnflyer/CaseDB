@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.lenovo.ittools.ctd.bean.common.TestToolBean" table="ctdcasetool">
+		<id name="instkey" column="instkey" type="string">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="toolName"  type="string"></property>
+		<property name="owner" type="string"></property>
+		<property name="description"  type="string"></property>
+		<property name="status"  type="string"></property>
+		<property name="path"  type="string"></property>
+		<property name="uploadFileName"  type="string"></property>
+		<property name="uploadTime"  type="timestamp"></property>
+	</class>
+</hibernate-mapping>

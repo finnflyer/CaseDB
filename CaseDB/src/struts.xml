@@ -41,7 +41,9 @@
 		<global-exception-mappings>
 			<exception-mapping result="exceptionPage" name="exceptionPage" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings> -->
-		
+		<action name="Help">
+		<result  name="success">/jsp/Help.jsp</result>
+		</action>
 	  <action name="Home" class="Home">
 			<result name="success">/jsp/Home.jsp</result>
 			<result name="error">/jsp/common/error.jsp</result>
@@ -117,6 +119,36 @@
 	<action name="DeleteTestPlan" class="DeleteTestPlan">
 		<result name="success">/jsp/TestPlan/TPHome.jsp</result>
 	</action>
+
+	<!-- =============================TestTool Part====================================  -->
+	<action name="TestToolHome" >
+		<result name="success">/jsp/TestTools/TestToolHome.jsp</result>
+	</action>
+	<action name="preSaveFile">
+		<result  name="success">/jsp/TestTools/UploadFileProperty.jsp</result>
+	</action>
+	<action name="SaveFile" class="preSaveFile">
+		<result  name="success">/jsp/TestTools/UploadFileDetail.jsp</result>
+	</action>
+	<action name="preUploadFile" class="preUploadFile">
+		<result  name="success">/jsp/TestTools/UploadFileDetail.jsp</result>
+	</action>
+	<action name="uploadFile" class="uploadFile"></action>
+	<action name="deleteFile" class="deleteFile">
+		<result name="success">/jsp/TestTools/TestToolHome.jsp</result>
+	</action>
+	<action name="SearchToolForPage" class="SearchToolForPage">
+		<result name="success">/jsp/TestTools/TestToolHome.jsp</result>
+	</action>
+	<action name="ShowToolDetail" class="ShowToolDetail">
+		<result name="success">/jsp/TestTools/ViewFileDetail.jsp</result>
+	</action>
+	<action name="downloadFileAction" class="downloadFile">
+			<result type="stream">
+				<param name="contentDisposition">attachment;filename=${toolBean.uploadFileName}</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
 </package>
 
 </struts>

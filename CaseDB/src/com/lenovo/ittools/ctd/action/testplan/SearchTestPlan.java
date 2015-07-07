@@ -36,7 +36,7 @@ public class SearchTestPlan extends ActionSupport{
 			testPlanName = testPlanName.toUpperCase();
 			hql.append(" and upper(i.testPlanName) like '%"+testPlanName+"%'");
 		}
-		
+		hql.append(" order by i.createDate desc");
 		System.out.println(hql);
 		if(1==searchflag){
 			pageBean = testPlanService.findTestPlanBeansByCondition(hql.toString(), 30, page);

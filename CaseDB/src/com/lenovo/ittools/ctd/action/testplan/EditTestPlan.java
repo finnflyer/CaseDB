@@ -15,10 +15,13 @@ public class EditTestPlan extends ActionSupport {
 	  private TestPlanService testPlanService;
 	  private SearchCaseService scService;
 	  private List<SearchCaseBean> contentList;
+	  private String testPlanName;
 	  public String execute(){
+		  testPlanName =  testPlanService.findTestPlanBeanByTestPlanInstkey(testPlanInstkey).getTestPlanName();  
 		  tpContentList = testPlanService.findTestPlanContentsByTestPlanInstkey(testPlanInstkey);
 		  contentList = new ArrayList<SearchCaseBean>();
 		  for(TestPlanContent temp:tpContentList){
+			  System.out.println(temp.getTestCaseInstkey());
 			  SearchCaseBean scb = scService.findSearchCaseBeanByCaseInstkey(temp.getTestCaseInstkey());
 			  scb.setTpOrder(temp.getTpOrder());
 			  SearchBeanCatoSetting(scb);
@@ -103,5 +106,12 @@ public class EditTestPlan extends ActionSupport {
 	public void setContentList(List<SearchCaseBean> contentList) {
 		this.contentList = contentList;
 	}
+	public String getTestPlanName() {
+		return testPlanName;
+	}
+	public void setTestPlanName(String testPlanName) {
+		this.testPlanName = testPlanName;
+	}
 	  
+	
 }

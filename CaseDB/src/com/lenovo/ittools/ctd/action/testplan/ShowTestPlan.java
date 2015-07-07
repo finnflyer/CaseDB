@@ -42,8 +42,8 @@ public class ShowTestPlan extends ActionSupport{
 				  SearchBeanCatoSetting(scb);
 				  contentList.add(scb);
 			  }
-			
 		  }
+		  
 		  totalTime = String.valueOf(total);
 		  return SUCCESS;
 	  }

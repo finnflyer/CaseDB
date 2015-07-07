@@ -51,7 +51,7 @@ public class SearchCaseForTestPlan extends ActionSupport {
 			String[] aryFunc  = mapOs.split(" ");
 			if(aryFunc.length>0){
 				for(int i=0;i<=aryFunc.length-1;i++){
-					hql.append(" i.osId like '%"+aryFunc[i]+"%' and");
+					hql.append(" i.osId like '%"+aryFunc[i]+"%' or");
 				}
 				hql.append(" 1=1 and ");
 			}
@@ -62,7 +62,7 @@ public class SearchCaseForTestPlan extends ActionSupport {
 			String[] aryFunc  = mapBrand.split(" ");
 			if(aryFunc.length>0){
 				for(int i=0;i<=aryFunc.length-1;i++){
-					hql.append(" i.brandId like '%"+aryFunc[i]+"%' and");
+					hql.append(" i.brandId like '%"+aryFunc[i]+"%' or");
 				}
 				hql.append(" 1=1 and (");
 			}
@@ -82,7 +82,7 @@ public class SearchCaseForTestPlan extends ActionSupport {
      
         
         hql.append("  1= 1  " );
-
+    	hql.append(" Order by i.caseCode asc");
 		System.out.println(hql);
 		
 		if(1==searchflag){

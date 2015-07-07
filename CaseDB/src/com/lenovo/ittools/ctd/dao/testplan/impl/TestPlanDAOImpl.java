@@ -75,7 +75,7 @@ public class TestPlanDAOImpl extends HibernateDaoSupport implements TestPlanDao 
 
 	@SuppressWarnings("unchecked")
 	public List<TestPlanBean> findTestPlanBeansAll() {
-	     String hql = "from TestPlanBean as tpb where 1=1 and tpb.testPlanStatus='Active'";
+	     String hql = "from TestPlanBean as tpb where 1=1 and tpb.testPlanStatus='Active' order by tpb.createDate desc";
 	     List<TestPlanBean> list = this.getHibernateTemplate().find(hql);
 	     if(list.size()>0){
 	    	 return list;

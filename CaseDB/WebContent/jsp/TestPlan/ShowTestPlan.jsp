@@ -48,6 +48,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				 <h4> Test Plan Owner: <s:property value="#request.testPlan.testPlanOwner" /> </h4> 
   				 </div>
   				 &nbsp; 	 &nbsp;	 &nbsp;	 &nbsp;
+  				 
+  				 <s:if test="#session.userInfo.userName !='tester' ">
+	<s:if test="#session.userInfo.Role =='Leader' || #session.userInfo.Role =='Admin' || #session.userInfo.Role =='Family Owner'">
 				  <div class="btn-group">
   					<button id="EditTestPlan" class="btn btn-warn" type="button" onclick="EditTestPlan()";>Edit Test Plan </button>
 	      		
@@ -56,6 +59,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						<button id="DeleteTestPlan" class="btn btn-warn" type="button" onclick="DeleteTestPlan();">Delete Test Plan
 	      			</button>
   					</div>   
+  					</s:if>
+  					</s:if>
 				    </div>	
 				    <br>
 				        <br>
@@ -87,7 +92,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			</a> 
     			</td> 
     			<td><s:property value="#tcinfo.functionCato" /></td>
-    			<td><s:property value="#tcinfo.caseName" /></td>
+    			<td><a href='${pageContext.servletContext.contextPath}/phase4/ShowTestCaseDetail?testCase.caseInstkey=<s:property value="#tcinfo.caseInstkey" />'   target="_blank" >    				
+    					<s:property value="#tcinfo.caseName" />
+    					</a></td>
 				<td><s:property value="#tcinfo.Version" /></td>
     			<td><s:property value="#tcinfo.osCato" /></td>
     			<td><s:property value="#tcinfo.brandCato" /></td>

@@ -46,7 +46,8 @@
 			   <!-- =================================TestPlan====================================== -->
 			   <value>com/lenovo/ittools/ctd/bean/testplan/TestPlanBean.hbm.xml</value>
 			   <value>com/lenovo/ittools/ctd/bean/testplan/TestPlanContent.hbm.xml</value>
-			   
+			    <!-- =================================TestTool====================================== -->
+			    <value>com/lenovo/ittools/ctd/bean/common/TestToolBean.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -72,6 +73,11 @@
 				<ref bean="sessionFactory" />
 			</property>
 	  </bean>
+	  <bean id="testToolDAO" class="com.lenovo.ittools.ctd.dao.common.impl.TestToolDAOImpl" scope="singleton">
+	  		<property name="sessionFactory">
+				<ref bean="sessionFactory" />
+			</property>
+	  </bean>
 	<!-- ==============Service============= -->
 		<bean id="userService" class="com.lenovo.ittools.ctd.service.common.impl.UserServiceImpl" scope="singleton">
 		<property name="userDAO" ref="userDAO"></property>
@@ -84,6 +90,9 @@
 		</bean>
 		<bean id="testPlanService" class="com.lenovo.ittools.ctd.service.testplan.impl.TestPlanServiceImpl" scope="singleton">
 			<property name="testPlanDAO" ref="testPlanDAO"></property>
+		</bean>
+		<bean id="testToolService" class="com.lenovo.ittools.ctd.service.common.impl.TestToolServiceImpl" scope="singleton">
+			<property name="testToolDAO" ref="testToolDAO"></property>
 		</bean>
    <!-- ==============Action============== -->
 	<bean id="loginAction" class="com.lenovo.ittools.ctd.action.common.LoginAction" scope="prototype">
@@ -187,5 +196,25 @@
 	</bean>
 	<bean id="DeleteTestPlan" class="com.lenovo.ittools.ctd.action.testplan.DeleteTestPlan" scope="prototype">
 	   <property name="testPlanService" ref="testPlanService"></property>
+	</bean>
+	<!-- ========================================TestTool Action======================================================= -->
+	<bean id="preSaveFile" class="com.lenovo.ittools.ctd.action.common.PreUploadFileAction" scope="prototype">
+		<property name="testToolService" ref="testToolService"></property>
+	</bean>
+	<bean id="uploadFile" class="com.lenovo.ittools.ctd.action.common.UploadFileToServer" scope="prototype">
+	   	<property name="testToolService" ref="testToolService"></property>
+	</bean>
+	<bean id="SearchToolForPage" class="com.lenovo.ittools.ctd.action.common.SearchToolForPage" scope="prototype">
+	   	<property name="testToolService" ref="testToolService"></property>
+	</bean>
+	<bean id="ShowToolDetail" class="com.lenovo.ittools.ctd.action.common.ShowToolDetail" scope="prototype">
+	 	<property name="testToolService" ref="testToolService"></property>
+	</bean>
+	<bean id="downloadFile" class="com.lenovo.ittools.ctd.action.common.DownloadFileAction" scope="prototype">
+		<property name="testToolService" ref="testToolService"></property>
+	</bean>
+	<bean id="preUploadFile" class="com.lenovo.ittools.ctd.action.common.PreUploadFile" scope="prototype">
+		<property name="testToolService" ref="testToolService"></property>
+		<property name="testCaseService" ref="testcaseService"></property>
 	</bean>
 </beans>
