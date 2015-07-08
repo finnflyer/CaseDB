@@ -24,12 +24,13 @@ public class SearchToolForPage extends ActionSupport{
 				throw new Exception();
 		}
 		StringBuffer hql = new StringBuffer(); 
-		hql.append("from TestToolBean as i where 1=1  ");
+		hql.append("from TestToolBean as i where 1=1  and i.status='New' ");
 		if(toolName!=null && !"".equals(toolName)){
 			toolName = toolName.toUpperCase();
 			hql.append("and upper(i.toolName) like '%"+toolName+"%'");
 		}
-		hql.append(" Order by i.uploadTime asc");
+		
+		hql.append(" Order by i.uploadTime desc");
 		if(1==searchflag){
 			pageBean = testToolService.findTestToolBeansByCondition(hql.toString(), 30, page);
 			session.setAttribute("ohql", hql.toString());

@@ -41,17 +41,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    $(document).ready(function() {
 	    	//alert('<s:property value="#request.automationFile.instkey"/>');
 	        $('#fileInput').uploadify({   
-		 		'uploader' 		: '<%=path%>/plugs/uploadify/uploadify.swf',
-		        'script'		: '<%=path%>/phase4/uploadFile',	         
+		 		'uploader' 		: '<%=basePath%>/plugs/uploadify/uploadify.swf',
+		        'script'		: '<%=basePath%>/phase4/uploadFile',	         
 		    	'cancelImg'   	: '<%=path%>/plugs/uploadify/cancel.png',
 		        'fileDataName'	: 'fileInput', 			//the name is same as input and Action property
 		        'queueID'		: 'fileQueue',   
 		        'auto'			: false,				//automation to upload once file selected
 		        'multi'			: true,					//if support more than one file upload
 		        'queueSizeLimit': 1,					//maximum number of upload file for one time
-		        'sizeLimit'   	: 150*1024*1024, 			//limit the size fo file(100M)
-		 		'fileExt'		: '*.zip; *.7z; *.rar',
-		 		'fileDesc'		: '*.rar,*.zip,*.7z',
+		      'sizeLimit'   	: 100*1024*1024, 			//limit the size fo file(100M)
 		        'buttonText'	: 'Browse Files',		//Button Text  
 		        'removeCompleted' : false,
 		        'displayData'	: 'percentage',			//speed of percentage, 
@@ -65,7 +63,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        					var id='<s:property value="#request.testToolBean.instkey"/>';
 		        					var url="<%=basePath%>phase4/ShowToolDetail?testToolBean.instkey="+id;
 		     	  				  	window.location.href=url;
-		          }  
+		          },
+		          'onError'        : function(event, queueID, fileObj,errorObj){
+   						alert(errorObj.type + "Error:" + errorObj.info);
+  				 }
 	        });   
 	    });  
 

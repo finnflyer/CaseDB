@@ -12,10 +12,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	<table class="table table table-bordered table-striped" style="table-layout:fixed">
     		<thead>
     		<tr>
-    			<th class="info" width="40%">Test Plan Name</th>
+    			<th class="info" width="28%">Test Plan Name</th>
     			<th class="info" >Project Name</th>
     			<th class="info"  width="10%">Owner Name</th>
-    			<th class="info" width="20%"> Comments </th>
+    			<th class="info" width="30%"> Comments </th>
     			<th class="info">Create Time</th>
         		</tr>
     		</thead>

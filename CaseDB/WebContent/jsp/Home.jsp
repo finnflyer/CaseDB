@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="col-lg-10">
 </div>
 <div class="col-lg-2">
-			<s:if test="#session.userInfo.Role =='Leader' || #session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Admin' || #session.userInfo.Role =='Family Owner'">
+			<s:if test="#session.userInfo.Role =='Leader' || #session.userInfo.Role =='Admin' ">
 		<a class="btn btn-info" href="<%=basePath%>jsp/user/RoleHome.jsp" role="button">Role</a>
 	</s:if>
 		<a class="btn btn-info" href="<%=basePath %>index.jsp" role="button">Log Out</a>

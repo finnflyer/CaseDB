@@ -215,6 +215,6 @@
 	</bean>
 	<bean id="preUploadFile" class="com.lenovo.ittools.ctd.action.common.PreUploadFile" scope="prototype">
 		<property name="testToolService" ref="testToolService"></property>
-		<property name="testCaseService" ref="testcaseService"></property>
+		
 	</bean>
 </beans>

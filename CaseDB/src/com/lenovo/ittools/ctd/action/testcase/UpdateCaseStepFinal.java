@@ -100,6 +100,7 @@ public class UpdateCaseStepFinal extends ActionSupport {
 		}
 		for (TestCaseContent temp : olderTestCaseContent){
 			temp.setCaseInstkey("Older");
+			temp.setComments(caseInstkey);
 			tcService.updateTestContent(temp);
 		}
 		int order = 0;

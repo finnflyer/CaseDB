@@ -45,14 +45,22 @@ public class UpdateTestPlan extends ActionSupport {
 				 //sort conlist by order
 				List<SearchCaseBean> tpList = new ArrayList<SearchCaseBean>();
 				int tpOrder =1;
-				
-				while(tpOrder<conList.size()+1){
+				int size = 0;
+			
+			    for(SearchCaseBean temp: conList){
+						if(temp!=null){
+							size++;
+						}
+				 }
+				System.out.println(size);
+				while(tpOrder<size+1){
 					for(SearchCaseBean temp: conList){
 						if(temp!=null){
 							if(tpOrder==temp.getTpOrder()){
 								tpList.add(temp);
 								tpOrder++;
 							}
+							
 						}	
 					}
 				}

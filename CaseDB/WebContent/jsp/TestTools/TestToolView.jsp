@@ -12,23 +12,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	<table class="table table table-bordered table-striped" style="table-layout:fixed">
     		<thead>
     		<tr>
-    			<th class="info" width="10%">Tool Name</th>
-    			<th class="info">File Name</th>
-    			<th class="info" width="30%">Description</th>
-    			<th class="info" width="30%">Upload Time</th>
+    	
+    			<th class="info" width="25%">Tool Name</th>
+    				<th class="info" width="8%">Download </th>
+    			<th class="info"   width="35%">Description</th>
+    			<th class="info" >Owner</th>
+    			<th class="info" >Upload Time</th>
+    		
         		</tr>
     		</thead>
     		<tbody>
     		<s:iterator value="#request.pageBean.list" id="toinfo">
     		<tr>
+    		
     			<td style="width:250;word-wrap:break-word;color:darkblue;font-size:120%"><a href='${pageContext.servletContext.contextPath}/phase4/ShowToolDetail?testToolBean.instkey=<s:property value="#toinfo.instkey" />' >    				
     					<s:property value="#toinfo.toolName" />
     			</a> 
     			</td> 
-    			<td><a href='${pageContext.servletContext.contextPath}/phase4/downloadFileAction?instkey=<s:property value="#toinfo.instkey" />' >
-    			<s:property value="#toinfo.uploadFileName"/></a></td>
+    		<td><a href='${pageContext.servletContext.contextPath}/phase4/downloadFileAction?instkey=<s:property value="#toinfo.instkey" />' >
+    			<img src="img/download2.jpg" class="img-thumbnail" style="height:30px" ></img></a></td>
     			<td><s:property value="#toinfo.description" /></td>
+    				<td><s:property value="#toinfo.owner" /></td>
     			<td><s:property value="#toinfo.uploadTime" /></td>
+    			
     		</tr>
     		</s:iterator>
     		</tbody>

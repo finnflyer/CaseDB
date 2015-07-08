@@ -34,6 +34,10 @@ function basicTest(){
 	  for(var i=1;i<testTable.rows.length;i++){
 		  var  time = document.getElementById("tcContent["+i+"].stepTime").value;
 			time = time.replace(" ","");
+			if(time==""){
+				alert("Step time should not be null");
+				return;
+			}
 			console.info("time"+i+" "+time);
 			document.getElementById("tcContent["+i+"].stepTime").value=time;
 	  }

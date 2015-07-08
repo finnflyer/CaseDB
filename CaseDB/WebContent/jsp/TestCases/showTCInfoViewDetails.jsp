@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  );
  function  replaceItemTableBlank(){
  
- 	   var history=document.getElementById("history");
+ 	        var history=document.getElementById("history");
   		var historyCom=history.innerHTML;
   		var regx=new RegExp("&lt;br&gt;","g");
   		if(historyCom!=""){
@@ -42,6 +42,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				lanCom = lanCom.replace(regx," <br/>");
   				lan.innerHTML = lanCom;
   		}
+
+		var hwinfo = document.getElementById("hwInfo");
+		var hwinfoCom = hwinfo.innerHTML;
+		console.info(hwinfoCom);
+		if(hwinfoCom !=""){
+  			hwinfoCom = hwinfoCom .replace(regx," <br/>");
+  				hwinfo.innerHTML = hwinfoCom ;
+  		}
+
     	var testTable=document.getElementById("TCItems");
     	var rows     = testTable.rows;
        	 for(var i=1;i<rows.length;i++){
@@ -252,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		<td class="active" width="40%"> HW Comments</td>
             		</tr>
                <tr>
-                    <td ><s:property value="testCaseInfo.hardwareInfo"  /></td>
+                    <td id="hwInfo"><s:property value="testCaseInfo.hardwareInfo"  /></td>
 	     	        <td ><s:property value="testCaseInfo.comments"  /></td>
                </tr>
             </table>  
