@@ -25,7 +25,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   function(){
 		       replaceItemTableBlank();
 		   }
-		  );
+	);
+	
+  $(document).ready(function() {
+	  $("#addTomyList").click(function() {
+		  var str="";
+		  $("[@type='checkbox'][@name='scriptid'][checked]").each(function(){ 
+			  	str+=" "+$(this).val();  	
+			});
+		  var inkey ="";
+		  var radios = document.getElementsByName("testPlanInstkey"); 
+		  console.info(radios);
+		  for(var i=0;i<radios.length;i++) 
+		    {  
+		        if(radios[i].checked) 
+		        { 
+		          inkey = radios[i].value;
+		        }  
+		    }  
+		    console.info(inkey);
+		  if(inkey==""){
+			  alert("Please select one Test Plan");
+		  }
+			$.ajax({
+				type : "POST",
+				url : "phase4/SaveContentToOlderTestPlan",
+				dataType : "html",
+				data : {
+					"testPlanInstkey": inkey,
+					"str":str
+				},
+				success : function(returnedData) {
+					if (returnedData == "success") {
+						$("#TestPlanForm").dialog("close");
+						alert("Adding succeed.");
+						var url = "phase4/ShowTestPlan?testPlanInstkey="+inkey;
+						document.forms["solutionForm"].action = url;
+						document.forms["solutionForm"].submit();		
+						displayBusyBox();
+					}
+				}
+			});
+		});
+		  
+  	});
  function  replaceItemTableBlank(){
  
  	        var history=document.getElementById("history");
@@ -129,7 +172,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		console.info(ImgD.height);
 		flag=false;
 	} 
-	
+	function openAddDlg(){
+		$("#TestPlanForm").dialog({
+					height : 400,
+					width : 800,
+					modal : true
+				});
+				$("#TestPlanForm").dialog("open");
+				console.info("bbb");
+	}
 	  function EditCaseStepOne(){
       		var url = "<%=basePath%>phase4/EditCaseStepOne";
       		window.location.href =url;	
@@ -146,13 +197,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       }
 	
 </script>
-<div class="col-lg-offset-9  " class="btn-toolbar" role="toolbar" >
+<div class="col-lg-offset-8 " class="btn-toolbar" role="toolbar" >
 <s:if test="#session.userInfo.userName !='tester' ">
 	<s:if test="#session.userInfo.Role =='Leader' || #session.userInfo.Role =='Case Owner' || #session.userInfo.Role =='Admin' || #session.userInfo.Role =='Family Owner'">
-	
+
+				<div class="btn-group">
+				 	<button id="EditCase" class="btn btn-warn" type="button" onclick="openAddDlg()";> Add To Plan </button>
+  					</div>	 
 				  <div class="btn-group">
-  					<button id="EditCase" class="btn btn-warn" type="button" onclick="EditCaseStepOne()";>Edit Test Case </button>
-	      		
+				 	<button id="EditCase" class="btn btn-warn" type="button" onclick="EditCaseStepOne()";>Edit Test Case </button>
   					</div>	 
   					<div class="btn-group">
   						<button id="DeleteTestCase" class="btn btn-warn" type="button" onclick="DeleteCase();">Delete Test Case
@@ -315,6 +368,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     		
           </div>
    
+</div>
+   <div id= "TestPlanForm"  style="magrin-left:20;magrin-top:100;display:none" >
+	  		<input type="button" id="addTomyList" value="add"  />
+			<table border='1'  class="tablesorter" style="width:400px">
+				<thead>
+				<tr>
+					<th>#</th>
+					<th>Test Plan Name</th>
+					<th> Date </th>
+				</tr>
+			</thead>
+			<tbody>
+			<s:iterator value="testPlanList" id="tpList">
+			<tr>
+				<td><input type="radio"   name="testPlanInstkey" value='<s:property value="#tpList.testPlanInstkey" />' /></td>
+				<td><s:property value="#tpList.testPlanName" /></td>
+				<td><s:property value="#tpList.createDate" /></td>
+			</tr>
+			</s:iterator>
+			</tbody>
+			</table>
 </div>
     
 	

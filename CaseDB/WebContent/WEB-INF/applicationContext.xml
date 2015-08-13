@@ -6,13 +6,13 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 			<property name="url">
-			<value>jdbc:mysql://localhost:3306/casedb</value>
+			<value>jdbc:mysql://10.176.36.129:3306/casedb</value>
 		</property>
 		<property name="username">
 			<value>root</value>
 		</property>
 		<property name="password">
-			<value>root</value>
+			<value>Aa123456</value>
 		</property>
 	</bean>
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -137,6 +137,7 @@
 	</bean>
 	<bean id="ShowTestCaseDetail" class="com.lenovo.ittools.ctd.action.testcase.ShowTestCaseDetail" scope="prototype">
 		<property name="tcService"	ref="testcaseService"></property>
+			<property name="testPlanService" ref="testPlanService"></property>
 	</bean>
 	<bean id="ShowPicture" class="com.lenovo.ittools.ctd.action.testcase.ShowPictureForAjax" scope="prototype">
 		<property name="tcService"	ref="testcaseService"></property>
@@ -159,6 +160,7 @@
 	<bean id="DeletePhoto" class="com.lenovo.ittools.ctd.action.testcase.HideTestCasePictureAction" scope="prototype"	>
 	   	<property name="tcService"	ref="testcaseService"></property>		
 	</bean>
+
 	<!-- ========================================TestPlan Action======================================================= -->
 	<bean id="TestPlanHome" class="com.lenovo.ittools.ctd.action.testplan.TestPlanHome" scope="prototype">
 	</bean>
@@ -215,6 +217,6 @@
 	</bean>
 	<bean id="preUploadFile" class="com.lenovo.ittools.ctd.action.common.PreUploadFile" scope="prototype">
 		<property name="testToolService" ref="testToolService"></property>
-		
 	</bean>
+
 </beans>

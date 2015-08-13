@@ -116,6 +116,7 @@
 		<result name="success">/jsp/TestPlan/TPHome.jsp</result>
 	</action>
 	<action name="SaveContentToOlderTestPlan" class="SaveContentToOlderTestPlan"></action>
+	<action name="AddCaseForTestPlan" class="AddCaseForTestPlan"></action>
 	<action name="DeleteTestPlan" class="DeleteTestPlan">
 		<result name="success">/jsp/TestPlan/TPHome.jsp</result>
 	</action>
@@ -149,6 +150,9 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
+
+		
+		
 </package>
 
 </struts>

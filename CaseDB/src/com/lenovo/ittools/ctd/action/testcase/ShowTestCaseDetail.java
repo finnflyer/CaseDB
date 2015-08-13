@@ -16,8 +16,10 @@ import com.lenovo.ittools.ctd.bean.testcase.TestCaseContent;
 import com.lenovo.ittools.ctd.bean.testcase.TestCaseFunction;
 
 import com.lenovo.ittools.ctd.bean.testcase.TestCaseInfo;
+import com.lenovo.ittools.ctd.bean.testplan.TestPlanBean;
 import com.lenovo.ittools.ctd.common.UserInfoBean;
 import com.lenovo.ittools.ctd.service.testcase.TestCaseService;
+import com.lenovo.ittools.ctd.service.testplan.TestPlanService;
 import com.lenovo.ittools.ctd.util.StringFormat;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -28,9 +30,23 @@ public class ShowTestCaseDetail extends ActionSupport {
 	  	private List<LanguagesBean> LanBean;
 		private  List<TestCaseContent> testCaseContents;
 		private TestCaseService tcService;
+		private TestPlanService testPlanService;
 		private PictureBean accessoryFile;
+		private List<TestPlanBean> testPlanList;
 		
 		
+		public TestPlanService getTestPlanService() {
+			return testPlanService;
+		}
+		public void setTestPlanService(TestPlanService testPlanService) {
+			this.testPlanService = testPlanService;
+		}
+		public List<TestPlanBean> getTestPlanList() {
+			return testPlanList;
+		}
+		public void setTestPlanList(List<TestPlanBean> testPlanList) {
+			this.testPlanList = testPlanList;
+		}
 		public String execute() throws Exception{
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();		
@@ -38,7 +54,7 @@ public class ShowTestCaseDetail extends ActionSupport {
 			if (userInfo == null) {
 				return "logError";
 			}
-			
+			testPlanList = testPlanService.findTestPlanBeansAll();
 			String caseInstkey = testCase.getCaseInstkey();
 			testCase = tcService.findTestCaseByCaseInstkey(caseInstkey);
 			testCaseInfo = tcService.findTestCaseInfoByCaseInstkey(caseInstkey);

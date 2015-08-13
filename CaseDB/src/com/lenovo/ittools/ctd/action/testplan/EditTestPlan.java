@@ -20,12 +20,22 @@ public class EditTestPlan extends ActionSupport {
 		  testPlanName =  testPlanService.findTestPlanBeanByTestPlanInstkey(testPlanInstkey).getTestPlanName();  
 		  tpContentList = testPlanService.findTestPlanContentsByTestPlanInstkey(testPlanInstkey);
 		  contentList = new ArrayList<SearchCaseBean>();
+		  int count = 0;
 		  for(TestPlanContent temp:tpContentList){
 			  System.out.println(temp.getTestCaseInstkey());
 			  SearchCaseBean scb = scService.findSearchCaseBeanByCaseInstkey(temp.getTestCaseInstkey());
-			  scb.setTpOrder(temp.getTpOrder());
-			  SearchBeanCatoSetting(scb);
-			  contentList.add(scb);
+			  if(scb!=null){
+				  int order = temp.getTpOrder();
+				  if(count!=0){
+					 order = temp.getTpOrder()-count;
+				  }
+				  scb.setTpOrder(order);
+				  SearchBeanCatoSetting(scb);
+				  contentList.add(scb);
+			  }else{
+				  count+=1;
+			  }
+			  
 		  }
 		  return SUCCESS;
 	  }

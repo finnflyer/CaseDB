@@ -16,6 +16,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.lenovo.ittools.ctd.bean.testcase.OldPicRelation;
 import com.lenovo.ittools.ctd.bean.testcase.PictureBean;
+import com.lenovo.ittools.ctd.bean.testcase.TestCase;
 import com.lenovo.ittools.ctd.bean.testcase.TestCaseContent;
 import com.lenovo.ittools.ctd.bean.testcase.TestCaseInfo;
 import com.lenovo.ittools.ctd.common.UserInfoBean;
@@ -98,9 +99,9 @@ public class UpdateCaseStepFinal extends ActionSupport {
 				olderPictureBeans.add(cp);
 			}
 		}
+		TestCase testCase = tcService.findTestCaseByCaseInstkey(caseInstkey);
 		for (TestCaseContent temp : olderTestCaseContent){
-			temp.setCaseInstkey("Older");
-			temp.setComments(caseInstkey);
+			temp.setCaseInstkey(testCase.getCaseCode());
 			tcService.updateTestContent(temp);
 		}
 		int order = 0;

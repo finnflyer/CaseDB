@@ -2,14 +2,15 @@ package com.lenovo.ittools.ctd.action.testcase;
 
 import com.lenovo.ittools.ctd.bean.testcase.TestCase;
 import com.lenovo.ittools.ctd.bean.testcase.TestCaseHistory;
+import com.lenovo.ittools.ctd.bean.testplan.TestPlanContent;
 import com.lenovo.ittools.ctd.service.testcase.TestCaseService;
+import com.lenovo.ittools.ctd.service.testplan.TestPlanService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class DeleteTestCase extends ActionSupport {
 
 	private String caseInstkey;
 	private TestCaseService tcService;
-	
 	public String getCaseInstkey() {
 		return caseInstkey;
 	}
@@ -22,9 +23,9 @@ public class DeleteTestCase extends ActionSupport {
 		return tcService;
 	}
 
-	public void setTcService(TestCaseService tcService) {
-		this.tcService = tcService;
-	}
+
+
+
 
 	public String execute(){
 		TestCase testCase = tcService.findTestCaseByCaseInstkey(caseInstkey);
@@ -39,6 +40,7 @@ public class DeleteTestCase extends ActionSupport {
 		 historyTestcase.setVersion(testCase.getVersion());
 		 tcService.saveTestcaseHistory(historyTestcase);
 		 tcService.deleteTestCase(testCase);
+		 
 		 
 		
 		return SUCCESS;

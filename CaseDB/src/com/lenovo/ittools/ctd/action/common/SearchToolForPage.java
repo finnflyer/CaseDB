@@ -29,7 +29,7 @@ public class SearchToolForPage extends ActionSupport{
 			toolName = toolName.toUpperCase();
 			hql.append("and upper(i.toolName) like '%"+toolName+"%'");
 		}
-		
+
 		hql.append(" Order by i.uploadTime desc");
 		if(1==searchflag){
 			pageBean = testToolService.findTestToolBeansByCondition(hql.toString(), 30, page);

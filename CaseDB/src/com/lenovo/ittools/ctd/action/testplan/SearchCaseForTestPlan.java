@@ -45,26 +45,28 @@ public class SearchCaseForTestPlan extends ActionSupport {
 
 		testPlanList = testPlanService.findTestPlanBeansAll();
 		StringBuffer hql = new StringBuffer(); 
-		hql.append("from SearchCaseBean as i where 1=1 and ");
+		hql.append("from SearchCaseBean as i where 1=1 and (");
 		if(null != mapOs  && !"".equals(mapOs)){
 			mapOs = mapOs.replace(", ", " ");
 			String[] aryFunc  = mapOs.split(" ");
 			if(aryFunc.length>0){
 				for(int i=0;i<=aryFunc.length-1;i++){
-					hql.append(" i.osId like '%"+aryFunc[i]+"%' or");
+					hql.append(" i.osId like '%"+aryFunc[i]+"%' or ");
 				}
-				hql.append(" 1=1 and ");
+				hql.append("i.osId like '%"+aryFunc[aryFunc.length-1]+"%') and ");
+				hql.append(" 1=1 and ( ");
 			}
 			
 		}
-		if(null !=mapBrand && !"".equals(mapBrand)){
+	if(null !=mapBrand && !"".equals(mapBrand)){
 			mapBrand = mapBrand.replace(", ", " ");
 			String[] aryFunc  = mapBrand.split(" ");
 			if(aryFunc.length>0){
 				for(int i=0;i<=aryFunc.length-1;i++){
-					hql.append(" i.brandId like '%"+aryFunc[i]+"%' or");
+					hql.append(" i.brandId like '%"+aryFunc[i]+"%' or ");
 				}
-				hql.append(" 1=1 and (");
+				hql.append(" i.brandId like '%"+aryFunc[aryFunc.length-1]+"%')");
+				hql.append(" and  1=1 and (");
 			}
 		}
 		if(null != mapFunction  && !"".equals(mapFunction)){
@@ -77,10 +79,7 @@ public class SearchCaseForTestPlan extends ActionSupport {
 		        	hql.append(" i.funcId="+Integer.parseInt(aryFunc[aryFunc.length-1])+") and ");    	
 		        }
 		}
-		
-	
-     
-        
+
         hql.append("  1= 1  " );
     	hql.append(" Order by i.caseCode asc");
 		System.out.println(hql);
