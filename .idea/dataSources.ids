@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - casedb@localhost" uuid="31cb090a-5d44-471e-9e77-da2f22c2f3e6">
+    <database-info product="MySQL" version="5.7.22-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="casedb"/>
+    <table name="ctdcasebrand" schema="" catalog="casedb" type="TABLE">
+      <column name="BRANDID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="BRANDCATO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="BRANDID"/>
+    </table>
+    <table name="ctdcasecontent" schema="" catalog="casedb" type="TABLE">
+      <column name="CASECONTENTINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CASELEVEL" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTITEM" sqlType="VARCHAR" precision="2048" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTSTEP" sqlType="VARCHAR" precision="2048" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTRESULT" sqlType="VARCHAR" precision="2048" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STEPTIME" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="COMMENTS" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRIORITY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="CASECONTENTINSTKEY"/>
+      <index name="CASEINSTKEY" unique="false" columns="CASEINSTKEY"/>
+    </table>
+    <table name="ctdcasefunction" schema="" catalog="casedb" type="TABLE">
+      <column name="FUNCTIONID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="FUNCTIONCATO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="FUNCTIONID"/>
+    </table>
+    <table name="ctdcaseinfo" schema="" catalog="casedb" type="TABLE">
+      <column name="CASEINFOINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EXECUTETIME" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MQ=="/>
+      <column name="BRANDID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="FUNCID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TESTMODEID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="OSID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COMPONEROWNER" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" def="Jyc="/>
+      <column name="AUTOMATION" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12" def="Jyc="/>
+      <column name="HARDWAREINFO" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12" def="Jyc="/>
+      <column name="LANGUAGECOMMENT" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12" def="Jyc="/>
+      <column name="COMMENTS" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12" def="Jyc="/>
+      <column name="MODIFYREASON" sqlType="VARCHAR" precision="2048" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INTRODUCTION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="CASEINFOINSTKEY"/>
+      <index name="BRANDID" unique="false" columns="BRANDID"/>
+      <index name="CASEID" unique="false" columns="CASEINSTKEY"/>
+      <index name="FUNCID" unique="false" columns="FUNCID"/>
+      <index name="TESTMODEID" unique="false" columns="TESTMODEID"/>
+    </table>
+    <table name="ctdcaselangmap" schema="" catalog="casedb" type="TABLE">
+      <column name="LANGUAGEKEY" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OSDES" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LOCALSET" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="LANGUAGEKEY"/>
+    </table>
+    <table name="ctdcasepicture" schema="" catalog="casedb" type="TABLE">
+      <column name="PICTUREINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="FILEPATH" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILENAME" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CASECONTENTINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TYPE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CREATEDATE" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <primary-key name="PRIMARY" columns="PICTUREINSTKEY"/>
+    </table>
+    <table name="ctdcasesearch" schema="" catalog="casedb" type="VIEW">
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CASENAME" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CASECODE" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OWNER" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VERSION" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BRANDID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="FUNCID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="OSID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTMODEID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="FUNCTIONCATO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="ctdcasetool" schema="" catalog="casedb" type="TABLE">
+      <column name="INSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TOOLNAME" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="800" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PATH" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UPLOADTIME" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <column name="OWNER" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Status" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="UploadFileName" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="INSTKEY"/>
+    </table>
+    <table name="ctdhistorytestcase" schema="" catalog="casedb" type="TABLE">
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CASENAME" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CASECODE" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VERSION" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Creator" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="CASEINSTKEY"/>
+    </table>
+    <table name="ctdissue" schema="" catalog="casedb" type="TABLE">
+      <column name="Instkey" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Projectinstkey" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ECRNumber" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IssueName" sqlType="VARCHAR" precision="512" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="512" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Configuration" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TestSite" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PhaseFound" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Component" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CaseNum" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Priority" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IssueStatus" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Lanugage" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ReproduceStep" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Osid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Platform" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createdate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn" version="true"/>
+      <column name="Owner" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Language" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Instkey"/>
+    </table>
+    <table name="ctdissuecomments" schema="" catalog="casedb" type="TABLE">
+      <column name="Instkey" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IssueInstkey" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Comments" sqlType="VARCHAR" precision="4080" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreateBy" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreateDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn" version="true"/>
+      <column name="Status" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Instkey"/>
+    </table>
+    <table name="ctdissuephase" schema="" catalog="casedb" type="TABLE">
+      <column name="PhaseID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PhaseCato" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="PhaseID"/>
+    </table>
+    <table name="ctdissuephoto" schema="" catalog="casedb" type="TABLE">
+      <column name="Instkey" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Creator" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IssueFileName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IssueInstkey" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IssuePath" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Status" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UpdateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="Instkey"/>
+    </table>
+    <table name="ctdlangmap" schema="" catalog="casedb" type="VIEW">
+      <column name="LANGUAGEKEY" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MDAwMDAwMDAwMDA="/>
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OSDES" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LOCALSET" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LANVALUE" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+    </table>
+    <table name="ctdlanguage" schema="" catalog="casedb" type="TABLE">
+      <column name="LANGUAGEINSTKEY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LANVALUE" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="LANGUAGEINSTKEY"/>
+    </table>
+    <table name="ctdproject" schema="" catalog="casedb" type="TABLE">
+      <column name="ProjectInstkey" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="ProjectName" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreateDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn" version="true"/>
+      <column name="Comments" sqlType="VARCHAR" precision="2014" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Enable" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ProjectOwner" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ProjectInstkey"/>
+    </table>
+    <table name="ctdshortname" schema="" catalog="casedb" type="TABLE">
+      <column name="Instkey" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Creator" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ShortName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Status" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Instkey"/>
+    </table>
+    <table name="ctdsupportos" schema="" catalog="casedb" type="TABLE">
+      <column name="OSINSTKEY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="OSDES" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="OSINSTKEY"/>
+    </table>
+    <table name="ctdtestcase" schema="" catalog="casedb" type="TABLE">
+      <column name="CASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="CASENAME" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CASECODE" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VERSION" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DATE" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Creator" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="CASEINSTKEY"/>
+    </table>
+    <table name="ctdtestmode" schema="" catalog="casedb" type="TABLE">
+      <column name="TESTMODEID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="TESTMODECATO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="TESTMODEID"/>
+    </table>
+    <table name="ctdtestplan" schema="" catalog="casedb" type="TABLE">
+      <column name="TESTPLANINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTPLANNAME" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTPLANTYPE" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PROJECTINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PROJECTNAME" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TESTPLANOWNERINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CREATEDATE" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <column name="TESTPLANSTATUS" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TESTPLANCOMMENTS" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TESTPLANDESCRIPTION" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TESTPLANOWNER" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="TESTPLANINSTKEY"/>
+    </table>
+    <table name="ctdtestplancontent" schema="" catalog="casedb" type="TABLE">
+      <column name="TESTPLANCONTENTINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TESTCASEINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TPORDER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TESTPLANINSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CREATETIME" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <primary-key name="PRIMARY" columns="TESTPLANCONTENTINSTKEY"/>
+    </table>
+    <table name="ctduser" schema="" catalog="casedb" type="TABLE">
+      <column name="INSTKEY" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="USERNAME" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MAILBOX" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ROLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMPLOYEEID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LIVE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ACTIVECODE" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SITE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="INSTKEY"/>
+    </table>
+  </data-source>
+</component>
