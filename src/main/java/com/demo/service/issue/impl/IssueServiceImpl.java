@@ -1,6 +1,7 @@
 package com.demo.service.issue.impl;
 
 import com.demo.dao.issue.IssueDao;
+import com.demo.model.issue.ComponetBean;
 import com.demo.model.issue.IssueBean;
 import com.demo.model.issue.IssuePhaseBean;
 import com.demo.service.impl.BaseServiceImpl;
@@ -28,6 +29,19 @@ public class IssueServiceImpl extends BaseServiceImpl<IssueBean> implements Issu
             for(int i=0;i<list.size();i++){
                 IssuePhaseBean ph = list.get(i);
                 map.put(ph.getPhaseId(),ph.getPhaseCato());
+            }
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String, String> findComponentBeanForMap() {
+        Map map= new LinkedHashMap();
+        List<ComponetBean> list = issueDao.findComponentBeanAll();
+        if(list.size()>0){
+            for(int i=0;i<list.size();i++){
+                ComponetBean ph = list.get(i);
+                map.put(ph.getComponet(),ph.getComponentName());
             }
         }
         return map;

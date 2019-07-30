@@ -1,9 +1,9 @@
 package com.demo.dao.testcase.impl;
 
 import com.demo.dao.impl.BaseDaoImpl;
-import com.demo.dao.testcase.PictureDao;
 import com.demo.dao.testcase.TestCaseDao;
 import com.demo.model.testcase.*;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,7 +23,11 @@ public class TestCaseDaoImpl extends BaseDaoImpl<TestCase> implements TestCaseDa
         List<TestCaseBrand> list =(List<TestCaseBrand>) this.getSession().createQuery(hql).list();
         return list;
     }
-
+    public List<TestCaseTestMode> findTestModeAll() {
+        String hql = "from TestCaseTestMode as b  order by b.testmodeid asc";
+        List<TestCaseTestMode> list =(List<TestCaseTestMode>) this.getSession().createQuery(hql).list();
+        return list;
+    }
 
     public List<TestCaseFunction> findTestCaseFunctionAll() {
         String hql = "from TestCaseFunction as s order by s.functionid asc";
@@ -69,6 +73,7 @@ public class TestCaseDaoImpl extends BaseDaoImpl<TestCase> implements TestCaseDa
 
     @Override
     public TestCaseInfo findTestCaseInfoByCaseInfoStkey(String key) {
+
         String hql="from TestCaseInfo as t where t.caseinfoinstkey='"+key+"'";
 
         return (TestCaseInfo) this.getSession().createQuery(hql).list().get(0);
@@ -76,28 +81,35 @@ public class TestCaseDaoImpl extends BaseDaoImpl<TestCase> implements TestCaseDa
 
     @Override
     public TestCaseInfo findTestCaseInfoByCasekey(String key) {
-        String hql="from TestCaseInfo as t where t.caseinstkey='"+key+"'";
 
-        return (TestCaseInfo) this.getSession().createQuery(hql).list().get(0);
+        String hql="from TestCaseInfo as t where t.caseinstkey=?0";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0,key);
+        return (TestCaseInfo) query.getResultList().get(0);
     }
 
     @Override
     public List<TestCaseContent> findCaseContentByCaseKey(String key) {
-        String hql = "from TestCaseContent  as t where t.caseinstkey='"+key+"' order by t.orderid asc";
-        return (List<TestCaseContent>)this.getSession().createQuery(hql).list();
+        String hql = "from TestCaseContent  as t where t.caseinstkey=?0 order by t.orderid asc";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0,key);
+        return (List<TestCaseContent>) query.getResultList();
     }
 
     @Override
     public List<CaseLanguage> findCaseLanguageByCaseID(String key) {
-        String hql = "from CaseLanguage  as t where t.caseinstkey='"+key+"'";
-        return (List<CaseLanguage>)this.getSession().createQuery(hql).list();
+        String hql = "from CaseLanguage  as t where t.caseinstkey=?0";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0,key);
+        return (List<CaseLanguage>) query.getResultList();
     }
 
     @Override
     public List<PictureBean> findPictureByCaseContentkey(String key) {
-        String hql = "from PictureBean  as t where t.casecontentinstkey='"+key+"'";
-
-        return (List<PictureBean>)this.getSession().createQuery(hql).list();
+        String hql = "from PictureBean  as t where t.casecontentinstkey=?0";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0,key);
+        return (List<PictureBean>)query.getResultList();
     }
 
     @Override

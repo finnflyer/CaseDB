@@ -184,6 +184,7 @@
             <li class="active"><a href="#home" data-toggle="tab">
                 Open Issue</a></li>
             <li><a href="#Limitation" data-toggle="tab">Limitation</a></li>
+            <li><a href="#OSKnown" data-toggle="tab">OSKnown</a></li>
             <li><a href="#ios" data-toggle="tab">All Issue</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
@@ -327,6 +328,78 @@
                                     </thead>
                                     <tbody>
                                     <s:iterator value="#request.limistationPageBean.list" var="issue">
+                                        <tr>
+                                            <td><s:property value="#issue.ecrNumber"/></td>
+                                            <td style="text-align:center"><s:property value="#issue.priority"/></td>
+                                            <td>
+                                                <a href='<%=path%>/phase4/ShowIssueDetail?issueKey=<s:property value="#issue.instkey" />'>
+                                                    <s:property value="#issue.issueName"/></a>
+                                            </td>
+                                            <td sytle="span-size:1px"><s:property value="#issue.osCato"/></td>
+                                            <td><s:property value="#issue.language"/></td>
+                                                <%--<td><s:select list="{'Open','Close','Limiataion','Cancel','WAD'}"--%>
+                                                <%--value="%{#issue.issueStatus}"/></td>--%>
+                                            <td><s:property value="#issue.issueStatus" /></td>
+                                            <td><s:property value="#issue.initalDate" /></td>
+                                            <td>
+                                                <s:if test="#issue.comments !=null"><Font color="blue">Creator:<s:property value="#issue.createBy" /></Font><br><s:property value="#issue.comments"/>
+                                                </s:if>
+                                                <button id="moreComments" style="span-size:3px" class="btn btn-sm"
+                                                        onclick="javascript:void(0);
+                                                                moreComment('<s:property value="#issue.instkey"/> ')">more
+                                                </button>
+                                            </td>
+                                                <%--<td><s:property value="#issue.testSiteCato" /></td>--%>
+
+                                                <%--<td><s:date name="#issue.createdate" format="yyyy-MM-dd" ></s:date></td>--%>
+                                                <%--<td><s:property value="#issue.owner" /></td>--%>
+                                        </tr>
+                                    </s:iterator>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                            <div class="col-lg-1">
+                            </div>
+                        </s:if>
+                        <s:elseif test="#request.pageBean.list!=null && #request.pageBean.list.size() == 0">
+                            No Limitations
+                        </s:elseif>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="OSKnown">
+                <div class="row" id="OSKnowned">
+                    <div class="col-lg-12">
+                        <s:if test="#request.OsKnownPageBean.list.size() >=0">
+                            <div>
+                                <div>
+                                    <form id="OSKnownForm" method="post" style="margin: 0px;">
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <table class="table table table-bordered table-striped" style="table-layout:fixed">
+                                    <thead>
+                                    <tr>
+                                        <th class="info" width="10%">ECR</th>
+                                        <th class="info" width="6%">Priority</th>
+                                        <th class="info" width="30%">Abstract</th>
+                                        <th class="info" width="10%">OS</th>
+                                        <th class="info" width="10%">Language</th>
+                                        <th class="info" >Status</th>
+                                        <th class="info">Create Date</th>
+                                        <th class="info" >Comments</th>
+                                            <%--<th class="info" width="5%">Site</th>--%>
+
+                                            <%--<th class="info">Creator</th>--%>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <s:iterator value="#request.OsKnownPageBean.list" var="issue">
                                         <tr>
                                             <td><s:property value="#issue.ecrNumber"/></td>
                                             <td style="text-align:center"><s:property value="#issue.priority"/></td>

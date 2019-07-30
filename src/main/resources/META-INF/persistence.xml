@@ -8,6 +8,9 @@
         <class>com.demo.model.overtime.ApplyVacationBean</class>
         <class>com.demo.model.abbreviation.AbbreviationBean</class>
         <class>com.demo.model.overtime.OverTimeUser</class>
+        <class>com.demo.model.issue.CtdissueEntity</class>
+        <class>com.demo.model.issue.ComponetBean</class>
+        <class>com.demo.model.issue.ComponetBean</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/casedb"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

@@ -3,6 +3,7 @@ package com.demo.dao.issue.impl;
 import com.demo.dao.impl.BaseDaoImpl;
 import com.demo.dao.issue.IssueCommentsDao;
 import com.demo.model.issue.IssueComments;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +17,10 @@ public class IssueCommentsDaoIml extends BaseDaoImpl<IssueComments> implements I
 
     @Override
     public List<IssueComments> findIssueCommentsByIssueKey(String key) {
-        String hql = "from IssueComments as i where i.issueInstkey='"+key+"'and i.status!='Del' order by  i.instkey desc";
-        return (List<IssueComments>) this.getSession().createQuery(hql).list();
+        String hql = "from IssueComments as i where i.issueInstkey= ?0 and i.status!='Del' Order by i.instkey desc";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0, key);
+        System.out.println(query.getResultList());
+        return (List<IssueComments>) query.getResultList();
     }
 }

@@ -35,13 +35,23 @@
             bootbox.alert("Select one Site");
             return false;
         }
+        var componentName = $('#componentName option:selected').val();
+        console.info("site:"+testSite);
+        if(componentName==" "){
+            bootbox.alert("Select one component");
+            return false;
+        }
         var priority = $('#priority option:selected').val();
         console.info("site:"+priority);
         if(priority==" "){
             bootbox.alert("Select one Priority");
             return false;
         }
-
+        var Style = $('#StyleId option:selected').val();
+        if(Style==" "){
+            bootbox.alert("Select one Issue Style");
+            return false;
+        }
         var issueName=$("#issueName").val();
         var Lanuage = $("#Lanuage").val();
         if(issueName==""){
@@ -122,6 +132,17 @@
 
                 </tr>
                 <tr>
+                    <td>Issue Style<span class="required">*</span>:</td>
+                    <td><s:select id="StyleId" name="issueStyle" list="#{'OS':'OS','Apps':'APPs',
+                    'CTO':'CTO','SWBOM/Image':'SWBOM/Image','Preload Process':'Preload Process','Driver':'Driver','BIOS':'BIOS',
+                    'HW/Others':'HW/Others.'}"/></td>
+
+                </tr>
+                <tr>
+                    <td> Component Owner <span class="required">*</span>:</td>
+                    <td><s:select list="%{issueFormBean.mapComponent}" id="componentName" name="componentName" headerKey=" " headerValue=" "/></td>
+                </tr>
+                <tr>
                     <td>ECR Number</td>
                     <td class="form-group" colspan="3">
                         <s:textfield
@@ -162,13 +183,7 @@
                             tooltip="Checkboxes with inline position"
                             name="issueBean.caseNum" placeholder="PA Test Case Number"/></td>
                 </tr>
-                <tr>
-                    <td> Component Owner:</td>
-                    <td class="form-group" colspan="3"><s:textfield
-                            tooltip="Checkboxes with inline position"
-                            name="issueBean.component"  placeholder="Component Owner"/></td>
-                </tr>
-                Component Owner
+
                 <tr>
                     <td class: text-right colspan="3">
                         <div class="col-lg-offset-10  col-lg-10" class="btn-toolbar" role="toolbar">

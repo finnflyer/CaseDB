@@ -86,6 +86,8 @@ public class EditTestCase extends ActionSupport {
         tcFormbean.setMapFunction(functionMap);
         Map<Integer,String> languageMap = tcService.findLanguageAllForMap();
         tcFormbean.setMapLanguage(languageMap);
+        Map<Integer,String> mapTestMode = tcService.findTestCaseModeAllForMap();
+        tcFormbean.setMapTestMode(mapTestMode);
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();

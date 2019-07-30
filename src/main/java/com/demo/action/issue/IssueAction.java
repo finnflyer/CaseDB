@@ -8,7 +8,6 @@ import com.demo.model.issue.IssuePhotoBean;
 import com.demo.service.issue.IssueCommentsService;
 import com.demo.service.issue.IssuePhotoService;
 import com.demo.service.issue.IssueService;
-import com.demo.service.testcase.TestCaseService;
 import com.demo.util.CatoSetting;
 import com.demo.util.Generator;
 import com.opensymphony.xwork2.ActionSupport;
@@ -43,6 +42,16 @@ public class IssueAction extends ActionSupport {
     private String phaseId;
     private IssueFormBean issueFormBean = IssueFormBean.getInstance();
     private String projectInstkey;
+    private String issueStyle;
+    private String componentName;
+
+    public String getComponentName() {
+        return componentName;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
+    }
 
     public String getProjectInstkey() {
         return projectInstkey;
@@ -92,6 +101,14 @@ public class IssueAction extends ActionSupport {
         return issueBean;
     }
 
+    public String getIssueStyle() {
+        return issueStyle;
+    }
+
+    public void setIssueStyle(String issueStyle) {
+        this.issueStyle = issueStyle;
+    }
+
     @Action(value = "SaveIssueContent", results = {@Result(name = "success",type="redirect",location = "ShowProjectDetail",
             params={"projectKey","%{projectInstkey}"})
     })
@@ -109,7 +126,10 @@ public class IssueAction extends ActionSupport {
         issueBean.setOsid(Integer.parseInt(osId));
         issueBean.setDescription("N/A");
         issueBean.setIssueStatus("Open");
+        issueBean.setComponent(componentName);
         issueBean.setOwner(user.getUsername());
+        issueBean.setCreatedate(new Date());
+        issueBean.setIssuestyle(issueStyle);
         issueService.save(issueBean);
 
         String savePath = "D:\\CTDDataBase\\IssueAttachement\\"+issueBean.getInstkey();
@@ -179,6 +199,7 @@ public class IssueAction extends ActionSupport {
     public String DeleteIssue(){
         issueBean = issueService.findById(issueKey);
         issueBean.setIssueStatus("Del");
+        issueBean.setEditordate(new Date());
         issueService.update(issueBean);
         return SUCCESS;
     }
@@ -193,20 +214,20 @@ public class IssueAction extends ActionSupport {
         modifiedBean.setTestSite(Integer.parseInt(siteId));
         modifiedBean.setPhaseFound(Integer.parseInt(phaseId));
         modifiedBean.setOsid(Integer.parseInt(osId));
+        modifiedBean.setIssuestyle(issueBean.getIssuestyle());
         modifiedBean.setCaseNum(issueBean.getCaseNum());
         modifiedBean.setComments(issueBean.getComments());
         modifiedBean.setIssueStatus(issueBean.getIssueStatus());
         modifiedBean.setDescription("");
         modifiedBean.setConfiguration(issueBean.getConfiguration());
-        modifiedBean.setComponent(issueBean.getComponent());
-        modifiedBean.setCreatedate(new Date());
+        modifiedBean.setComponent(componentName);
+        modifiedBean.setEditordate(new Date());
         modifiedBean.setReproduceStep(issueBean.getReproduceStep());
         modifiedBean.setIssueName(issueBean.getIssueName());
         modifiedBean.setEcrNumber(issueBean.getEcrNumber());
         modifiedBean.setPlatform(issueBean.getPlatform());
         modifiedBean.setPriority(issueBean.getPriority());
         modifiedBean.setLanguage(issueBean.getLanguage());
-
 
         issueService.update(modifiedBean);
         return SUCCESS;

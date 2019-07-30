@@ -100,13 +100,23 @@
             bootbox.alert("Select one Site");
             return false;
         }
+        var componentName = $('#componentName option:selected').val();
+        console.info("site:"+testSite);
+        if(componentName==" "){
+            bootbox.alert("Select one component");
+            return false;
+        }
         var priority = $('#priority option:selected').val();
         console.info("site:" + priority);
         if (priority == " ") {
             bootbox.alert("Select one Priority");
             return false;
         }
-
+        var Style = $('#StyleId option:selected').val();
+        if(Style==" "){
+            bootbox.alert("Select one Issue Style");
+            return false;
+        }
         var issueName = $("#issueName").val();
         var language = $("#language").val();
         if (issueName == "") {
@@ -195,7 +205,7 @@
                 </tr>
                 <tr>
                     <td>Issue Status<span class="required">*</span>:</td>
-                    <td><s:select list="{'Open','Close','Limitation','Cancel','WAD'}"
+                    <td><s:select list="{'Open','Close','Limitation','Cancel','WAD','SW_OS_W10_DGN'}"
                                   name="issueBean.issueStatus" value="%{issueBean.issueStatus}"/></td>
                 </tr>
                 <tr>
@@ -216,7 +226,17 @@
                 </tr>
                 <tr>
                     <td>Test Site<span class="required">*</span>:</td>
-                    <td><s:select list="%{issueFormBean.mapTestsite}" id="siteId" name="siteId"/></td>
+                    <td><s:select list="%{issueFormBean.mapTestsite}" id="siteId" value="%{issueBean.testSite}" name="siteId"/></td>
+                </tr>
+                <tr>
+                    <td> Component Owner <span class="required">*</span>:</td>
+                    <td><s:select list="%{issueFormBean.mapComponent}" value="%{issueBean.component}" id="componentName" name="componentName" /></td>
+                </tr>
+                <tr>
+                    <td>Issue Style <span class="required">*</span>:</td>
+                    <td><s:select id="StyleId" name="issueBean.issuestyle" list="#{'OS':'OS','Apps':'APPs',
+                    'CTO':'CTO','SWBOM/Image':'SWBOM/Image','Preload Process':'Preload Process','Driver':'Driver','BIOS':'BIOS',
+                    'HW/Others':'HW/Others.'}"/></td>
                 </tr>
                 <tr>
                     <td>Phase Found<span class="required">*</span>:</td>
@@ -233,18 +253,6 @@
                                 cssClass="input-sm"
                                 elementCssClass="col-sm-9"
                                 tooltip="Enter ECR No here" placeholder="ECR Number"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Components:</td>
-                    <td class="form-group" colspan="3">
-                        <s:textfield
-                                id="Components"
-                                name="issueBean.component"
-                                value="%{issueBean.component}"
-                                cssClass="input-sm"
-                                elementCssClass="col-sm-9"
-                                tooltip="Enter Case Number  here" placeholder="Components"/>
                     </td>
                 </tr>
                 <tr>

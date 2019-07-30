@@ -3,7 +3,6 @@ package com.demo.action.user;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.model.common.User;
 import com.demo.service.common.UserService;
-import com.demo.util.VerificationCodeUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
@@ -13,11 +12,9 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.ByteArrayInputStream;
 
 /**
  * Created by Admin on 2016/9/1.

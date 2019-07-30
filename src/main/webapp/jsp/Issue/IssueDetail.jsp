@@ -106,6 +106,14 @@
 
             </tr>
             <tr>
+                <td class="active">Component Owner:</td>
+                <td><s:property value="issueBean.component"/></td>
+            </tr>
+            <tr>
+                <td class="active">Issue Style:</td>
+                <td><s:property value="issueBean.issuestyle"/></td>
+            </tr>
+            <tr>
                 <td class="active">Phase Found:</td>
                 <td><s:property value="issueBean.phaseCato"/></td>
             </tr>
@@ -122,10 +130,7 @@
                 <td><s:property value="issueBean.platform"/></td>
 
             </tr>
-            <tr>
-                <td class="active">Component Owner:</td>
-                <td><s:property value="issueBean.component"/></td>
-            </tr>
+
             <tr>
                 <td class="active">Creator:</td>
                 <td><s:property value="issueBean.owner"/></td>

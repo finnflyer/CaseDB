@@ -2,7 +2,6 @@ package com.demo.action.testcase;
 
 import com.demo.model.testcase.*;
 import com.demo.service.testcase.TestCaseService;
-import com.demo.service.testplan.TestPlanContentService;
 import com.demo.util.CatoSetting;
 import com.demo.util.EncryptUtil;
 import com.demo.util.Generator;
@@ -18,7 +17,10 @@ import org.springframework.context.annotation.Scope;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Admin on 2016/9/5.
@@ -39,7 +41,14 @@ public class ShowTestCaseDetail extends ActionSupport {
     public String showCaseDetail(){
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
-        String caseInstkey = EncryptUtil.deString(testCase.getCaseinstkey());
+
+
+        String caseInstkey;
+        if(testCase.getCaseinstkey().length()>21)
+            caseInstkey =  EncryptUtil.deString(testCase.getCaseinstkey());
+        else
+        caseInstkey = testCase.getCaseinstkey();
+
         testCase = tcService.findById(caseInstkey);
         testCaseInfo = tcService.findTestCaseInfoByCasekey(caseInstkey);
         testCaseContents = tcService.findCaseContentByCaseKey(caseInstkey);

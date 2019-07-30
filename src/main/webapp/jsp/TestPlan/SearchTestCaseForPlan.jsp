@@ -137,7 +137,7 @@
         console.info(allselect);
 
         var checkbox = document.getElementsByName("mapBrand");
-        console.info(allselect.chceked);
+        console.info(allselect.checked);
         if (allselect[0].checked) {
             for (var i = 0; i < checkbox.length; i++) {
                 checkbox[i].checked = true;
@@ -155,7 +155,22 @@
         console.info(allselect);
 
         var checkbox = document.getElementsByName("mapFunction");
-        console.info(allselect.chceked);
+        console.info(allselect.checked);
+        if (allselect[0].checked) {
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = true;
+            }
+        } else {
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = false;
+            }
+        }
+    }
+    function selectTestMode(){
+        var allselect = document.getElementsByName("TestMode");
+        console.info(allselect);
+        var checkbox = document.getElementsByName("mapTestMode");
+        console.info(allselect.checked);
         if (allselect[0].checked) {
             for (var i = 0; i < checkbox.length; i++) {
                 checkbox[i].checked = true;
@@ -264,6 +279,23 @@
 
                         </tr>
                         <tr>
+                            <td width="120px" style="font-weight:bold">Test Mode</td>
+
+                            <td class="form-group" colspan="6">
+
+                                <input type="checkbox" name="TestMode" onclick="selectTestMode();"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="mapTestMode" value="1" id="mapTestMode-1"/>
+                                <label for="mapBrand-1" class="checkboxLabel"
+                                       style="font-weight:normal">Normal</label>
+                                <input type="checkbox" name="mapTestMode" value="2" id="mapTestMode-2"/>
+                                <label for="mapBrand-2" class="checkboxLabel"
+                                       style="font-weight:normal">S Mode</label>
+                                <input type="hidden" id="__multiselect_SearchTestCaseForPlan_mapTestMode"
+                                       name="__multiselect_mapTestMode" value=""/></td>
+
+                        </tr>
+                        <tr>
                             <td style="font-weight:bold">Support OS</td>
                             <td colspan="6">
                                 <input type="checkbox" name="Os" onclick="selectOs();"/>
@@ -310,6 +342,8 @@
                                 <input type="checkbox" name="mapFunction" value="8" id="mapFunction-8"/>
                                 <label for="mapFunction-8" class="checkboxLabel" style="font-weight:normal">8 - CTO and
                                     Special Bid</label>
+                                <input type="checkbox" name="mapFunction" value="9" id="mapFunction-9"/>
+                                <label for="mapFunction-9" class="checkboxLabel" style="font-weight:normal">9 - IoT</label>
                                 <input type="hidden" id="__multiselect_SearchTestCaseForPlan_mapFunction"
                                        name="__multiselect_mapFunction" value=""/></td>
                             <td>

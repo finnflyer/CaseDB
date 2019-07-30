@@ -4,7 +4,6 @@ import com.demo.dao.impl.BaseDaoImpl;
 import com.demo.dao.overtime.OverTimeUserDao;
 
 import com.demo.model.overtime.OverTimeUser;
-import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,8 +14,9 @@ public class OverTimeUserDaoImpl extends BaseDaoImpl<OverTimeUser> implements Ov
     public OverTimeUserDaoImpl(){super(OverTimeUser.class);}
 
     public OverTimeUser findUserByName(String userName){
-        String hql = "from OverTimeUser where loginname = ? ";
-        Query query = getSession().createQuery(hql);
+        String hql = "from OverTimeUser where loginname = ?0";
+
+        org.hibernate.query.Query query = getSession().createQuery(hql);
         query.setParameter(0, userName);
         if(query.list().size()==0)
             return null;

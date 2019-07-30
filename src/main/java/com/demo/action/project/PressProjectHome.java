@@ -134,6 +134,7 @@ public class PressProjectHome extends ActionSupport {
     private PageBean issuePageBean;
     private PageBean allIssuePageBean;
     private PageBean limistationPageBean;
+    private PageBean OsKnownPageBean;
 
 
     @Autowired
@@ -141,6 +142,14 @@ public class PressProjectHome extends ActionSupport {
     @Autowired
     private IssueService issueService;
 
+
+    public PageBean getOsKnownPageBean() {
+        return OsKnownPageBean;
+    }
+
+    public void setOsKnownPageBean(PageBean osKnownPageBean) {
+        OsKnownPageBean = osKnownPageBean;
+    }
 
     public PageBean getLimistationPageBean() {
         return limistationPageBean;
@@ -236,6 +245,28 @@ public class PressProjectHome extends ActionSupport {
             CatoSetting.issueBeanCatoSetting(temp);
         }
         limistationPageBean = issuePageBeanIni(limitationIssueQuery);
+        //OSKnwon
+        where = "projectinstkey=?0 and issueStatus =?1 and issueStatus !=?2";
+        String[] paramOSKnown = {projectKey,"SW_OS_W10_DGN","Del",};
+        QueryResult<IssueBean> OSKnownIssueQuery = issueService.getScrollData(0,300,where,paramLimi,orderby);
+        for(IssueBean temp :limitationIssueQuery.getDatas()){
+            List<IssueComments> commentsList = commentsService.findIssueCommentsByIssueKey(temp.getInstkey());
+            if(commentsList.size()>0){
+                temp.setComments(commentsList.get(0).getComments());
+                temp.setCreateBy(commentsList.get(0).getCreateBy());
+            }
+            Map<Integer,String> testSiteMap= new LinkedHashMap();
+            testSiteMap.put(1,"CDL");
+            testSiteMap.put(2,"LCFC");
+            testSiteMap.put(3,"Compal");
+            testSiteMap.put(4,"Wistron");
+            testSiteMap.put(5,"Quata");
+            String testSite = testSiteMap.get(temp.getTestSite());
+            temp.setTestSiteCato(testSite);
+            CatoSetting.issueBeanCatoSetting(temp);
+        }
+        OsKnownPageBean = issuePageBeanIni(limitationIssueQuery);
+
         //All Issue
         where = "projectinstkey=?0 and issueStatus !=?1";
         String[] paramAll = {projectKey,"Del",};
@@ -315,9 +346,10 @@ public class PressProjectHome extends ActionSupport {
         for(IssueBean temp:list)
             CatoSetting.issueBeanCatoSetting(temp);
         String title = "Issue";
-        String[] rowsName = new String[]{"IssueNo","ECR","IssueName",
-                "Reproduce Step","Configuration","Component","Phase","OS","TestSite","Priority",
-                "Create By","Date","Status","Comments"};
+        String[] rowsName = new String[]{"No","Family","Platform","Phase","ECR","Sev","Abstract",
+                "Reproduce Step","Component Owner","Lang","OS/SKU","Open_Date",
+                "Comments\n" +
+                        "(Issue module/BIOS/Config.etc.)","Finder","Tracker","Fixed Module","Defect Status","Close_Date","Issue Style"};
         List<Object[]>  dataList = new ArrayList<Object[]>();
 
         Object[] objs = null;
@@ -326,25 +358,41 @@ public class PressProjectHome extends ActionSupport {
 
             objs = new Object[rowsName.length];
             objs[0]=i;
-            objs[1]=issueBean.getEcrNumber();
-            objs[2]=issueBean.getIssueName();
-            objs[3]=issueBean.getReproduceStep();
-            objs[4]=issueBean.getConfiguration();
-            objs[5]=issueBean.getComponent();
-            objs[6]=issueBean.getPhaseCato();
-            objs[7]=issueBean.getOsCato();
-            objs[8]=issueBean.getTestSiteCato();
-            objs[9]=issueBean.getPriority();
-            objs[10]=issueBean.getOwner();
+            objs[1]=projectName;
+            objs[2]=issueBean.getPlatform();
+            objs[3]=setPahseFound(issueBean);
+            objs[4]=issueBean.getEcrNumber();
+            objs[5]=issueBean.getPriority();
+            objs[6]=issueBean.getIssueName();
+            objs[7]=issueBean.getReproduceStep();
+            objs[8]=issueBean.getComponent();
+            if(issueBean.getLanguage()!=null)
+                objs[9]= issueBean.getLanguage();
+            else
+                objs[9]= "";
+            objs[10]=issueBean.getOsCato();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = df.format(issueBean.getCreatedate());
             objs[11]=date;
-            objs[12]=issueBean.getIssueStatus();
             List<IssueComments> commentsList = commentsService.findIssueCommentsByIssueKey(issueBean.getInstkey());
-            if(commentsList.size()>0)
-              objs[13]=commentsList.get(0).getComments();
-            else
-              objs[13]= "";
+            objs[12] = "";
+            if(commentsList.size()>0){
+                for(IssueComments temp:commentsList)
+                  objs[12] = objs[12]+"\n"+temp.getComments();
+            }
+            objs[13]=issueBean.getOwner();
+
+            objs[14]=issueBean.getOwner();
+            objs[15] = "N/A";
+            objs[16] = issueBean.getIssueStatus();
+            if(issueBean.getEditordate()!=null){
+                date = df.format(issueBean.getEditordate());
+                objs[17] = date;
+            }else{
+                objs[17]="";
+            }
+
+            objs[18] = issueBean.getIssuestyle();
             dataList.add(objs);
         }
         System.out.println(dataList.size());
@@ -374,5 +422,36 @@ public class PressProjectHome extends ActionSupport {
         projectBean.setEnable("Delete");
         projectService.update(projectBean);
         return SUCCESS;
+    }
+
+    public String setPahseFound(IssueBean issueBean){
+        String phaseFound = "";
+        switch (issueBean.getPhaseFound()){
+            case 1:phaseFound = "Wave0";
+                    break;
+            case 2:phaseFound ="Wave1";
+                break;
+            case 3:phaseFound = "Wave2";
+                break;
+            case 4:phaseFound = "Reresh";
+                break;
+            case 5:phaseFound = "Other";
+                break;
+            case 123:phaseFound = "Wave0/Wave1/Wave2";
+                break;
+            case 234:phaseFound = "Wave1/Wave2/Refresh";
+                break;
+            case 25:phaseFound = "Wave1/Other";
+                break;
+            case 24:phaseFound = "Wave1/Refresh";
+                break;
+            case 23:phaseFound = "Wave1/Wave2";
+                break;
+            case 12:phaseFound = "Wave0/Wave1";
+                break;
+            default:phaseFound = "";
+                break;
+        }
+        return phaseFound;
     }
 }

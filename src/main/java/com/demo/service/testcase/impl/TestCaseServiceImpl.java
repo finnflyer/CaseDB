@@ -1,6 +1,5 @@
 package com.demo.service.testcase.impl;
 
-import com.demo.dao.testcase.SearchDao;
 import com.demo.dao.testcase.TestCaseDao;
 import com.demo.model.testcase.*;
 import com.demo.service.impl.BaseServiceImpl;
@@ -53,6 +52,19 @@ public class TestCaseServiceImpl extends BaseServiceImpl<TestCase> implements Te
             for(int i=0;i<list.size();i++){
                 LanguagesBean lb = list.get(i);
                 map.put(lb.getLanguageinstkey(),lb.getLanvalue());
+            }
+        }
+        return map;
+    }
+
+    @Override
+    public Map<Integer, String> findTestCaseModeAllForMap() {
+        Map map= new LinkedHashMap();
+        List<TestCaseTestMode> list = testCaseDao.findTestModeAll();
+        if(list.size()>0){
+            for(int i=0;i<list.size();i++){
+                TestCaseTestMode testCaseTestMode = list.get(i);
+                map.put(testCaseTestMode.getTestmodeid(),testCaseTestMode.getTestmodecato());
             }
         }
         return map;

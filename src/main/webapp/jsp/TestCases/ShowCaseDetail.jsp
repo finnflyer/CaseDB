@@ -261,14 +261,24 @@
                                 </div>
                             </td>
 
-                            <td style="font-weight:normal"><p style="font-weight:normal"><s:property
-                                    value="priority"/></p>
+                            <td style="font-weight:normal"><p style="font-weight:normal">
+
+                                <s:property
+                                    value="priority"/>
+                            </p>
                             </td>
                             <%--<td>--%>
                                 <%--<s:property value="steptime"/>--%>
                             <%--</td>--%>
-                            <td style="word-wrap:break-word" long='<s:property value="comments" />' short=''><s:property
-                                    value="comments"/></td>
+
+                            <td style="word-wrap:break-word" long='<s:property value="comments" />' short=''>
+                                <s:if test = "comments.contains('</a>')">
+                                 <a href=""><s:property
+                                    value="comments"/></a>
+                                    <s:else>
+                                    </s:else>
+                                </s:if>
+                            </td>
                         </tr>
                     </s:iterator>
 

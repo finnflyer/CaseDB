@@ -22,15 +22,26 @@ public class SearchCaseBean implements Serializable {
     private String functioncato;
     private String brandCato;
     private String osCato;
+    private String modeCato;
     private Integer tpOrder;
+    private String status;
 
-    public void setTpOrder(Integer tpOrder) {
-        this.tpOrder = tpOrder;
+    @Transient
+    public String getModeCato() {
+        return modeCato;
+    }
+
+    public void setModeCato(String modeCato) {
+        this.modeCato = modeCato;
     }
 
     @Transient
     public Integer getTpOrder() {
         return tpOrder;
+    }
+
+    public void setTpOrder(Integer tpOrder) {
+        this.tpOrder = tpOrder;
     }
 
     @Transient
@@ -51,6 +62,7 @@ public class SearchCaseBean implements Serializable {
         this.brandCato = brandCato;
     }
 
+    @Basic
     @Id
     @Column(name = "CASEINSTKEY")
     public String getCaseinstkey() {
@@ -151,5 +163,11 @@ public class SearchCaseBean implements Serializable {
         this.functioncato = functioncato;
     }
 
+    @Basic
+    @Column(name = "STATUS")
+    public String getStatus(){return status;}
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

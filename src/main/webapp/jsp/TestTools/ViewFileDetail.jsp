@@ -23,7 +23,7 @@
     });
     function Upload() {
         var key = "<s:property value='toolBean.instkey' />";
-        var url = "<%=basePath%>phase4/preUploadFile?toolKey=" + key;
+        var url = "<%=basePath%>phase4/preSaveFile?toolKey=" + key;
         window.location.href = url;
     }
     function DeleteTool() {

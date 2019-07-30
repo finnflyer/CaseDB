@@ -9,11 +9,20 @@ public class IssueFormBean {
     private Map<Integer,String> mapPhase;
     private Map<Integer, String> mapOs;
     private Map<Integer,String> mapTestsite;
+    private Map<String,String> mapComponent;
     private static final IssueFormBean instance = new IssueFormBean();
     private IssueFormBean(){}
     public static IssueFormBean getInstance(){
         return instance;
 
+    }
+
+    public Map<String, String> getMapComponent() {
+        return mapComponent;
+    }
+
+    public void setMapComponent(Map<String, String> mapComponent) {
+        this.mapComponent = mapComponent;
     }
 
     public Map<Integer, String> getMapTestsite() {

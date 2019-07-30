@@ -10,6 +10,7 @@ public class TCFormBean {
 	private  Map<Integer, String> mapBrand;
 	private  Map<Integer, String> mapOs;
 	private  Map<Integer, String> mapFunction;
+	private  Map<Integer, String> mapTestMode;
 
 	private  Map<Integer, String> mapLanguage;
 
@@ -21,6 +22,14 @@ public class TCFormBean {
 		
 	}
 
+
+	public Map<Integer, String> getMapTestMode() {
+		return mapTestMode;
+	}
+
+	public void setMapTestMode(Map<Integer, String> mapTestMode) {
+		this.mapTestMode = mapTestMode;
+	}
 
 	public Map<Integer, String> getMapBrand() {
 		return mapBrand;

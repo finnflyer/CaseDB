@@ -8,6 +8,7 @@ import com.demo.service.testcase.SearchCaseService;
 import com.demo.service.testcase.TestCaseService;
 import com.demo.service.testplan.TestPlanContentService;
 import com.demo.service.testplan.TestPlanService;
+import com.demo.util.EncryptUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -92,7 +93,7 @@ public class TestPlanDetailAction extends ActionSupport {
     }
 
     @Action(value="ViewTestPlan",results={@Result(name="success",location="/jsp/TestPlan/ShowTestPlan.jsp")})
-    public String viewTestPlan(){
+    public String viewTestPlan() throws Exception{
         tpContentList = testPlanContentService.findTestPlanContentByTestPlanKey(testPlanInstkey);
         testPlan = testPlanService.findById(testPlanInstkey);
         testPlanName = testPlanService.findById(testPlanInstkey).getTestplanname();
@@ -101,17 +102,24 @@ public class TestPlanDetailAction extends ActionSupport {
         int total=0;
         for(TestPlanContent temp:tpContentList){
             SearchCaseBean scb = searchCaseService.findById(temp.getTestcaseinstkey());
+            System.out.println(temp.getTestcaseinstkey());
+            EncryptKey(scb);
             if(scb!=null){
                 TestCaseInfo testcaseInfo = testCaseService.findTestCaseInfoByCaseKey(temp.getTestcaseinstkey());
                 total = total + testcaseInfo.getExecutetime();
                 scb.setTpOrder(temp.getTporder());
                 SearchBeanCatoSetting(scb);
+
                 contentList.add(scb);
             }
         }
 
         totalTime = String.valueOf(total);
         return SUCCESS;
+    }
+
+    public void EncryptKey(SearchCaseBean temp) throws Exception{
+        temp.setCaseinstkey(EncryptUtil.enString(temp.getCaseinstkey()));
     }
     public void SearchBeanCatoSetting(SearchCaseBean temp) {
         switch (temp.getBrandid()) {

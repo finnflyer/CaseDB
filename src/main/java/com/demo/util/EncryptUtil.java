@@ -1,16 +1,14 @@
 package com.demo.util;
-import java.security.Key;
-import java.security.spec.AlgorithmParameterSpec;
+import org.apache.commons.lang3.StringUtils;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-
-import org.apache.commons.lang3.StringUtils;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import java.security.Key;
+import java.security.spec.AlgorithmParameterSpec;
 
 /**
  * 加密/解密工具

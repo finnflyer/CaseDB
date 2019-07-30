@@ -30,7 +30,8 @@ public class DeleteTestCase extends ActionSupport {
     @Action(value="DeleteCase",results={@Result(name="success",type="redirect",location="TestCaseHome")})
 	public String execute(){
 		 TestCase testCase = tcService.findById(caseInstkey);
-		TestCaseHistroy historyTestcase = new TestCaseHistroy();
+
+		 TestCaseHistroy historyTestcase = new TestCaseHistroy();
 		 historyTestcase.setCasecode(testCase.getCasecode());
 		 historyTestcase.setCaseinstkey(testCase.getCaseinstkey());
 		 historyTestcase.setCasename(testCase.getCasename());
@@ -40,7 +41,9 @@ public class DeleteTestCase extends ActionSupport {
 		 historyTestcase.setStatus("Del");
 		 historyTestcase.setVersion(testCase.getVersion());
 		 tcService.saveTestcaseHistory(historyTestcase);
-		 tcService.delete(testCase);
+		testCase.setStatus("Hide");
+		tcService.update(testCase);
+		 //tcService.delete(testCase);
 		return SUCCESS;
 	}
 }

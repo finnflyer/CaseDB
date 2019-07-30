@@ -108,6 +108,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">More <i class="caret"></i></a>
                     <ul class="dropdown-menu">
                         <li id="OverTime"><a href="phase4/OverTimeHome">OT</a></li>
+                        <li id="IssueHome"><a href="<%=basePath%>jsp/Issue/IssueHome.jsp">Issue</a></li>
                         <li id="abbreviation"><a href="phase4/AbbreviationHome">Abbreviation</a></li>
                     </ul>
                 </li>

@@ -56,9 +56,11 @@ public class CreateIssue extends ActionSupport {
     public String IssueCreate(){
         Map<Integer,String> osMap =testCaseService.findSupportOSAllForMap();
         Map<Integer,String> phaseMap = issueService.findIssuePhaseBeanForMap();
+        Map<String,String> componetMap = issueService.findComponentBeanForMap();
         issueFormBean.setMapOs(osMap);
         issueFormBean.setMapPhase(phaseMap);
         Map testSiteMap= new LinkedHashMap();
+        issueFormBean.setMapComponent(componetMap);
         testSiteMap.put(1,"CDL");
         testSiteMap.put(2,"LCFC");
         testSiteMap.put(3,"Compal");
@@ -66,6 +68,7 @@ public class CreateIssue extends ActionSupport {
         testSiteMap.put(5,"Quata");
         testSiteMap.put(6,"Foxcom");
         issueFormBean.setMapTestsite(testSiteMap);
+
         return SUCCESS;
     }
     private IssueBean issueBean;
@@ -75,6 +78,15 @@ public class CreateIssue extends ActionSupport {
     private IssuePhotoService issuePhotoService;
     private List<IssuePhotoBean> photoList;
     private List<IssueComments> commentsList;
+    private String siteId;
+
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
+    }
+
+    public String getSiteId() {
+        return siteId;
+    }
 
     public List<IssuePhotoBean> getPhotoList() {
         return photoList;
@@ -114,8 +126,10 @@ public class CreateIssue extends ActionSupport {
         issueBean = issueService.findById(issueKey);
         Map<Integer,String> osMap =testCaseService.findSupportOSAllForMap();
         Map<Integer,String> phaseMap = issueService.findIssuePhaseBeanForMap();
+        Map<String,String> componetMap = issueService.findComponentBeanForMap();
         issueFormBean.setMapOs(osMap);
         issueFormBean.setMapPhase(phaseMap);
+        issueFormBean.setMapComponent(componetMap);
         Map testSiteMap= new LinkedHashMap();
         testSiteMap.put(1,"CDL");
         testSiteMap.put(2,"LCFC");
@@ -123,6 +137,7 @@ public class CreateIssue extends ActionSupport {
         testSiteMap.put(4,"Wistron");
         testSiteMap.put(5,"Quata");
         issueFormBean.setMapTestsite(testSiteMap);
+
         String[] param ={issueKey,"Del"};
         commentsList = issueCommentsService.getScrollData(0,10,"issueInstkey=?0 and status!=?1 ",param).getDatas();
         photoList = issuePhotoService.getScrollData(0,10,"issueInstkey =?0 and status!= ?1",param).getDatas();

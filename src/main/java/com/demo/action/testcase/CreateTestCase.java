@@ -1,20 +1,14 @@
 package com.demo.action.testcase;
 
-import com.demo.model.common.User;
 import com.demo.model.formbean.TCFormBean;
-import com.demo.model.testcase.TestCase;
-import com.demo.model.testcase.TestCaseInfo;
 import com.demo.service.testcase.TestCaseService;
-import com.demo.util.Generator;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-
 
 import java.util.Map;
 
@@ -43,6 +37,8 @@ public class CreateTestCase extends ActionSupport {
             tcFormbean.setMapFunction(functionMap);
             Map<Integer,String> languageMap = testCaseService.findLanguageAllForMap();
             tcFormbean.setMapLanguage(languageMap);
+            Map<Integer,String> testmodeMap = testCaseService.findTestCaseModeAllForMap();
+            tcFormbean.setMapTestMode(testmodeMap);
         return SUCCESS;
     }
 

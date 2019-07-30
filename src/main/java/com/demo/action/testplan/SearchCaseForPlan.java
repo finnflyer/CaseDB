@@ -77,7 +77,7 @@ private TestPlanService testPlanService;
         findProjectTestPlan();
         LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
         orderby.put("casecode ", "asc");
-        String where = "upper(casename) like ?0 and upper(owner) like ?1";
+        String where = "upper(casename) like ?0 and upper(owner) like ?1 and status='draft'";
         String[] param = {"%%", "%%"};
         if (caseName != null && !"".equals(caseName))
             param[0] = "%" + caseName.toUpperCase() + "%";
@@ -154,6 +154,15 @@ private TestPlanService testPlanService;
     private String mapOs;
     private String mapFunction;
     private String mapBrand;
+    private String mapTestMode;
+
+    public String getMapTestMode() {
+        return mapTestMode;
+    }
+
+    public void setMapTestMode(String mapTestMode) {
+        this.mapTestMode = mapTestMode;
+    }
 
     public String getMapOs() {
         return mapOs;
@@ -217,8 +226,28 @@ private TestPlanService testPlanService;
                 hql.append(" i.funcid="+Integer.parseInt(aryFunc[aryFunc.length-1])+") and ");
             }
         }
+        if(null !=mapTestMode && !"".equals(mapTestMode)){
+            //mapTestMode "2" "1" "1,2"
+            if(mapTestMode.equals("2")){
+                hql.append("i.testmodeid = 12 and");
+            }
+            if(mapTestMode.equals("1,2")){
+                hql.append("i.testmodeid = 1 or i.testmodeid = 12 and");
+            }
+            if(mapTestMode.equals("1")){
+                hql.append("i.testmodeid = 1 or i.testmodeid = 12 and");
+            }
+//            mapTestMode = mapTestMode.replace(", "," ");
+//            String[] aryFunc = mapTestMode.split(" ");
+//            if(aryFunc.length>0){
+//                for(int i =0;i<aryFunc.length-1;i++){
+//                    hql.append(" i.testmodeid="+Integer.parseInt(aryFunc[i])+" or");
+//                }
+//                hql.append(" i.testmodeid="+Integer.parseInt(aryFunc[aryFunc.length-1])+" and ");
+//            }
+        }
 
-        hql.append("  1= 1  " );
+        hql.append(" i.status='Draft' and 1= 1  " );
         hql.append(" Order by i.casecode asc");
         System.out.println(hql);
         QueryResult<SearchCaseBean> resultList = searchCaseService.findResultByHql(hql.toString());

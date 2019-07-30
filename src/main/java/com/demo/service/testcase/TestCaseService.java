@@ -18,6 +18,7 @@ public interface TestCaseService extends BaseService<TestCase> {
     Map<Integer, String> findSupportOSAllForMap();
 
     Map<Integer, String> findLanguageAllForMap();
+    Map<Integer,String>  findTestCaseModeAllForMap();
 
     List<LanguagesBean> findLanguageBeanAll();
 

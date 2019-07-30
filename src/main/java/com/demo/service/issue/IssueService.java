@@ -11,5 +11,6 @@ import java.util.Map;
  */
 public interface IssueService extends BaseService<IssueBean> {
     Map<Integer,String> findIssuePhaseBeanForMap();
+    Map<String,String> findComponentBeanForMap();
     List<IssueBean> findIssueBeanByProjectKey(String key);
 }

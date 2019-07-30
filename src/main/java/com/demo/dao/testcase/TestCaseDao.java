@@ -2,7 +2,6 @@ package com.demo.dao.testcase;
 
 import com.demo.model.testcase.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -11,6 +10,7 @@ import java.util.List;
 public interface TestCaseDao {
      List<TestCaseFunction> findTestCaseFunctionAll();
      List<TestCaseBrand>    findBrandAll();
+     List<TestCaseTestMode> findTestModeAll();
      List<LanguagesBean>    findLanguageBeanAll();
      List<TestCaseSupportOs> findSupportOSAll();
      List<TestCaseContent> findCaseContentByCaseKey(String key);

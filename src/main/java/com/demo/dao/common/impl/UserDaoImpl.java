@@ -22,8 +22,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
         String hql = "from User where username = ?0 ";
         Query query = getSession().createQuery(hql);
         query.setParameter(0, Name);
-        // query.setParameter(1, user.getPassword());
-        return (User) query.uniqueResult();
+        if(query.getResultList().size()==0)
+            return null;
+        return (User) query.getResultList().get(0);
     }
 
     public User findByNameAndPassword(User user) {
@@ -31,7 +32,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
         Query query = getSession().createQuery(hql);
         query.setParameter(0, user.getUsername());
         query.setParameter(1, user.getPassword());
-        return (User) query.uniqueResult();
+        return (User) query.getResultList().get(0);
     }
 
 

@@ -53,7 +53,7 @@ public class UpdateTestCase extends ActionSupport {
     private String HWinfo;
     private String HWinfoComment;
     private List<TestCaseContent> testcasecontent;
-
+    private String mapTestMode;
 
     @Action(value = "UpdateCaseStepOne", results = {@Result(name = "success", location = "/jsp/TestCases/EditTestCaseStepTwo.jsp")})
     public String UpdateTestCaseStepOne() {
@@ -67,6 +67,8 @@ public class UpdateTestCase extends ActionSupport {
 
         mapOs = mapOs.replace(", ", "");
         mapBrand = mapBrand.replace(", ", "");
+        mapTestMode = mapTestMode.replace(", ","");
+
         testCase = tcService.findById(caseInstkey);
         testCaseInfo = tcService.findTestCaseInfoByCaseInfoStkey(caseInfoInstkey);
 
@@ -78,6 +80,7 @@ public class UpdateTestCase extends ActionSupport {
         testCase.setDate(new Date());
 
         testCaseInfo.setFuncid(Integer.valueOf(functionId));
+        testCaseInfo.setTestmodeid(Integer.valueOf(mapTestMode));
         testCaseInfo.setModifyreason(modifyReason);
         testCaseInfo.setBrandid(Integer.valueOf(mapBrand));
         testCaseInfo.setOsid(mapOs);
@@ -105,7 +108,7 @@ public class UpdateTestCase extends ActionSupport {
         testCaseInfo.setLanguagecomment(languageComment);
         tcService.updateTestCaseInfo(testCaseInfo);
         List<CaseLanguage> ctdCaseLan = tcService.findCaseLanguageByCaseId(caseInstkey);
-        for (int i = 0; i < ctdCaseLan.size(); i++) {
+        for (int i = 0; i <ctdCaseLan.size(); i++) {
             ctdCaseLan.get(i).setLocalset(modifyCaseLan.get(i).getLocalset());
         }
         for (CaseLanguage temp : ctdCaseLan)
@@ -126,9 +129,10 @@ public class UpdateTestCase extends ActionSupport {
     private List<String> uploadContentType = new ArrayList();
     private List<OldPicRelation> olderPicRelations = new ArrayList();
     private String savePath;
+    private String caseKey;
 
     @Action(value = "UpdateCaseStepFinal", results = {@Result(name = "success", type="redirect", location = "ShowTestCaseDetail",
-    params = {"testCase.caseinstkey","%{testCase.caseinstkey}"})})
+    params = {"testCase.caseinstkey","%{sid}"})})
     public String UpdateTestCaseFinal() throws Exception {
         logger.info("Test case content item " + tcContent.size());
 
@@ -142,30 +146,30 @@ public class UpdateTestCase extends ActionSupport {
         savePath = "D:\\CTDDataBase\\CasePics\\" + caseInstkey;
         File saveFile = new File(savePath);
         if (!saveFile.exists()) {
-            saveFile.mkdir();
-        }
-        List<PictureBean> pictureBeanList = new ArrayList();
-        if (upload != null) {
-            for (int i = 0; i < upload.size(); i++) {
-                String[] strs = uploadFileName.get(i).split("\\.");
-                String surfix = strs[strs.length - 1];
-                String filename = strs[strs.length - 2];
-                FileOutputStream fos =
-                        new FileOutputStream(savePath + "\\" + filename + "." + surfix);
-                FileInputStream fis = new FileInputStream(upload.get(i));
-                byte[] buffer = new byte[1024];
-                int len = 0;
-                while ((len = fis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, len);
-                }
-                fos.close();
-                PictureBean cp = new PictureBean();
-                cp.setType(0);
-                cp.setFilepath(savePath + "\\" + filename + '.' + surfix);
-                cp.setFilename(uploadFileName.get(i));
-                cp.setCreatedate(new Date());
-                pictureBeanList.add(cp);
+                saveFile.mkdir();
             }
+            List<PictureBean> pictureBeanList = new ArrayList();
+            if (upload != null) {
+                for (int i = 0; i < upload.size(); i++) {
+                    String[] strs = uploadFileName.get(i).split("\\.");
+                    String surfix = strs[strs.length - 1];
+                    String filename = strs[strs.length - 2];
+                    FileOutputStream fos =
+                            new FileOutputStream(savePath + "\\" + filename + "." + surfix);
+                    FileInputStream fis = new FileInputStream(upload.get(i));
+                    byte[] buffer = new byte[1024];
+                    int len = 0;
+                    while ((len = fis.read(buffer)) > 0) {
+                        fos.write(buffer, 0, len);
+                    }
+                    fos.close();
+                    PictureBean cp = new PictureBean();
+                    cp.setType(0);
+                    cp.setFilepath(savePath + "\\" + filename + '.' + surfix);
+                    cp.setFilename(uploadFileName.get(i));
+                    cp.setCreatedate(new Date());
+                    pictureBeanList.add(cp);
+                }
             session.removeAttribute(sid);
         }
 
@@ -235,8 +239,9 @@ public class UpdateTestCase extends ActionSupport {
         testCaseInfo.setExecutetime(totalTime);
         tcService.updateTestCaseInfo(testCaseInfo);
 
-        session.removeAttribute("EditCaseMode");
 
+        session.removeAttribute("EditCaseMode");
+        sid = EncryptUtil.enString(testCase.getCaseinstkey());
         return SUCCESS;
     }
 
@@ -448,5 +453,13 @@ public class UpdateTestCase extends ActionSupport {
 
     public void setSid(String sid) {
         this.sid = sid;
+    }
+
+    public String getMapTestMode() {
+        return mapTestMode;
+    }
+
+    public void setMapTestMode(String mapTestMode) {
+        this.mapTestMode = mapTestMode;
     }
 }

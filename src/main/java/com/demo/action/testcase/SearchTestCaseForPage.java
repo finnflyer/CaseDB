@@ -6,7 +6,6 @@ import com.demo.service.testcase.SearchCaseService;
 import com.demo.util.EncryptUtil;
 import com.demo.util.QueryResult;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.inject.Container;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -90,7 +89,7 @@ public class SearchTestCaseForPage extends ActionSupport {
         HttpSession session = request.getSession();
         LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
         orderby.put("casecode ", "asc");
-        String where = "upper(casename) like ?0 and upper(owner) like ?1 and upper(casecode) like ?2";
+        String where = "upper(casename) like ?0 and upper(owner) like ?1 and upper(casecode) like ?2 and status ='draft'";
         String[] param = {"%%", "%%","%%"};
         if (caseName != null && !"".equals(caseName))
             param[0] = "%" + caseName.toUpperCase() + "%";
@@ -126,6 +125,16 @@ public class SearchTestCaseForPage extends ActionSupport {
     }
 
     public void SearchBeanCatoSetting(SearchCaseBean temp) {
+        switch (temp.getTestmodeid()){
+            case 1:
+                temp.setModeCato("Normal");
+                break;
+            case 2:temp.setModeCato("S Mode");
+                break;
+            case 12:
+                temp.setModeCato("Normal/SMode");
+                break;
+        }
         switch (temp.getBrandid()) {
             case 1:
                 temp.setBrandCato("ThinkPad");
@@ -167,6 +176,9 @@ public class SearchTestCaseForPage extends ActionSupport {
                 break;
             case 4:
                 temp.setOsCato("win10");
+                break;
+            case 24:
+                temp.setOsCato("win7/win10");
                 break;
             default:
                 break;

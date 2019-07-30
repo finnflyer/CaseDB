@@ -102,7 +102,14 @@ function submitValidation(){
                         tooltip="Checkboxes with inline position"
                         list="%{tcFormbean.mapOs}"
                         name="mapOs"/></td>
-  			    </tr>
+  			        </tr>
+				 <tr>
+					 <td>Test Mode</td>
+					 <td colspan="3" > <s:checkboxlist
+							 tooltip="Checkboxes with inline position"
+							 list="%{tcFormbean.mapTestMode}"
+							 name="mapTestMode"/></td>
+				 </tr>
 				    <tr>
 				       <td>System Brand</td>
 				       <td class="form-group" colspan="3" > <s:checkboxlist

@@ -1,8 +1,8 @@
 package com.demo.dao.issue;
 
+import com.demo.model.issue.ComponetBean;
 import com.demo.model.issue.IssueBean;
 import com.demo.model.issue.IssuePhaseBean;
-import com.demo.model.testcase.TestCaseSupportOs;
 
 import java.util.List;
 
@@ -12,4 +12,5 @@ import java.util.List;
 public interface IssueDao {
       List<IssuePhaseBean> findIssuePhaseBeanAll();
       List<IssueBean> findIssueBeanByProjectKey(String key);
+      List<ComponetBean> findComponentBeanAll();
 }

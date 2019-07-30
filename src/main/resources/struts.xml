@@ -24,9 +24,10 @@
             </result>
             <result name="error">/jsp/Error.jsp</result>
         </global-results>
-        <!--<global-exception-mappings>-->
+        <global-exception-mappings>
             <!--<exception-mapping result="error" exception="java.lang.Exception" />-->
-        <!--</global-exception-mappings>-->
+            <exception-mapping result="error" exception="java.io.FileNotFoundException" />
+        </global-exception-mappings>
     </package>
     <!--指定result中action返回的jsp位置-->
     <constant name="struts.convention.result.path" value="/"/>
@@ -37,7 +38,7 @@
     <!-- 是否启用开发模式(开发时设置为true,发布到生产环境后设置为false) -->
     <constant name="struts.devMode" value="true"/>
     <!-- struts配置文件改动后，是否重新加载(开发时设置为true,发布到生产环境后设置为false) -->
-    <constant name="struts.configuration.xml.reload" value="true"/>
+    <constant name="struts.configuration.xml.reload" value="false"/>
     <!-- 设置浏览器是否缓存静态内容(开发时设置为false,发布到生产环境后设置为true) -->
     <constant name="struts.serve.static.browserCache" value="false"/>
     <!-- 请求参数的编码方式 -->

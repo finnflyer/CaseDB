@@ -51,6 +51,18 @@
         console.info("start");
         var brandId = '<s:property value="testCaseInfo.brandid"/>';
         var osId = '<s:property value= "testCaseInfo.osid" />';
+        var testModeId = '<s:property value="testCaseInfo.testmodeid"/>';
+        console.info(testModeId);
+        switch (testModeId.length){
+            case 1:
+                    $("#testmodeid-"+testModeId).attr("checked","checked");
+                break;
+            case 2:
+                    $("#testmodeid-1").attr("checked","checked");
+                $("#testmodeid-2").attr("checked","checked");
+                break;
+
+        }
          switch (brandId.length) {
             case 1:
                 $("#UpdateCaseStepOne_mapBrand-" + brandId).attr("checked", "checked");
@@ -155,6 +167,13 @@
                                                     tooltip="Checkboxes with inline position"
                                                     list="%{tcFormbean.mapOs}"
                                                     name="mapOs"/></td>
+                </tr>
+                <tr>
+                    <td>Test Mode</td>
+                    <td colspan="3"><s:checkboxlist id="testmodeid"
+                                                    tooltip="Checkboxes with inline position"
+                                                    list="%{tcFormbean.mapTestMode}"
+                                                    name="mapTestMode"/></td>
                 </tr>
                 <tr>
                     <td>System Brand</td>

@@ -1,14 +1,12 @@
 package com.demo.util;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Random;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 
 /**
  * 验证码类，主要生成几种不同类型的验证码
@@ -23,7 +21,7 @@ public class VerificationCodeUtil {
     private ByteArrayInputStream image;// 图像
     private String str;// 验证码
     private static final int WIDTH = 500;
-    private static final int HEIGHT = 30;
+    private static final int HEIGHT = 40;
 
     public static void main(String[] arg) {
         VerificationCodeUtil vcu = VerificationCodeUtil.Instance();
@@ -65,7 +63,7 @@ public class VerificationCodeUtil {
             g.setColor(new Color(20 + random.nextInt(110), 20 + random
                     .nextInt(110), 20 + random.nextInt(110)));
             // 调用函数出来的颜色相同，可能是因为种子太接近，所以只能直接生成
-            g.drawString(rand, 20 * i + 26, 20);
+            g.drawString(rand, 40 * i + 26, 40);
         }
         this.setStr(sRand);/* 赋值验证码 */
         // 图象生效
@@ -131,7 +129,7 @@ public class VerificationCodeUtil {
         Graphics g = image.getGraphics(); // 获取图形上下文
         g.setColor(getRandColor(200, 250));// 设定背景色
         g.fillRect(0, 0, WIDTH, HEIGHT);
-        g.setFont(new Font("Times New Roman", Font.PLAIN, 14));// 设定字体
+        g.setFont(new Font("Times New Roman", Font.PLAIN, 22));// 设定字体
         g.setColor(getRandColor(160, 200)); // 随机产生165条干扰线，使图象中的认证码不易被其它程序探测到
         for (int i = 0; i < 165; i++) {
             int x = random.nextInt(WIDTH);

@@ -49,6 +49,9 @@ public class CatoSetting {
             case 4:
                 testCaseInfo.setOsCato("win10");
                 break;
+            case 24:
+                testCaseInfo.setOsCato("win7/win10");
+                break;
             default:
                 break;
         }
@@ -178,4 +181,5 @@ public class CatoSetting {
                 break;
         }
     }
+
 }

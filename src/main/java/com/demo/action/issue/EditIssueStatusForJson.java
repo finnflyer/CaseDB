@@ -1,7 +1,6 @@
 package com.demo.action.issue;
 
 import com.demo.model.formbean.EditIssueBean;
-import com.demo.model.formbean.IssueFormBean;
 import com.demo.model.issue.IssueBean;
 import com.demo.service.issue.IssueService;
 import com.opensymphony.xwork2.ActionSupport;

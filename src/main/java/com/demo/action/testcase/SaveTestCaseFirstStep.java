@@ -36,6 +36,7 @@ public class SaveTestCaseFirstStep extends ActionSupport {
     private String functionId;
     private String mapOs;
     private String mapBrand;
+    private String mapTestMode;
     private String version;
     private String introduction = "";
     private String modifyReason;
@@ -54,6 +55,7 @@ public class SaveTestCaseFirstStep extends ActionSupport {
         User user = (User) session.getAttribute("user");
         mapOs = mapOs.replace(", ", "");
         mapBrand = mapBrand.replace(", ", "");
+        mapTestMode = mapTestMode.replace(", ","");
         TestCase testCase = new TestCase();
         String caseInstkey = Generator.generatorID();
         testCase.setCaseinstkey(caseInstkey);
@@ -67,6 +69,7 @@ public class SaveTestCaseFirstStep extends ActionSupport {
         testCaseService.save(testCase);
         TestCaseInfo testCaseInfo = new TestCaseInfo();
         testCaseInfo.setBrandid(Integer.valueOf(mapBrand));
+        testCaseInfo.setTestmodeid(Integer.valueOf(mapTestMode));
         testCaseInfo.setCaseinstkey(caseInstkey);
         String caseInfoInstkey = Generator.generatorID();
         testCaseInfo.setCaseinfoinstkey(caseInfoInstkey);
@@ -186,4 +189,11 @@ public class SaveTestCaseFirstStep extends ActionSupport {
         this.introduction = introduction;
     }
 
+    public void setMapTestMode(String mapTestMode) {
+        this.mapTestMode = mapTestMode;
+    }
+
+    public String getMapTestMode() {
+        return mapTestMode;
+    }
 }

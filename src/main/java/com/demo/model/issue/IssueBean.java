@@ -2,7 +2,6 @@ package com.demo.model.issue;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -29,6 +28,8 @@ public class IssueBean implements Serializable {
     private String platform;
     private Date createdate;
     private String owner;
+    private String issuestyle;
+    private Date editordate;
 
     private String osCato;
     private String phaseCato;
@@ -262,4 +263,24 @@ public class IssueBean implements Serializable {
     public void setOwner(String owner) {
         this.owner = owner;
     }
+    @Basic
+    @Column(name = "editordate")
+    public Date getEditordate() {
+        return editordate;
+    }
+
+    public void setEditordate(Date editordate) {
+        this.editordate = editordate;
+    }
+
+    @Basic
+    @Column(name = "issuestyle")
+    public String getIssuestyle() {
+        return issuestyle;
+    }
+
+    public void setIssuestyle(String issuestyle) {
+        this.issuestyle = issuestyle;
+    }
+
 }
