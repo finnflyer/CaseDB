@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/jsp/decorators">
+	
+	<excludes>
+		<pattern>/index.jsp</pattern>
+		<pattern>/jsp/Test.jsp</pattern>
+	</excludes>
+	
+    <decorator name="phase4" page="phase4.jsp">
+    	<pattern>/phase4/*</pattern>
+    </decorator>
+</decorators>
