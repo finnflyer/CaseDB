@@ -18,7 +18,7 @@ public class TestCaseContent {
     private String teststep;
     private String testresult;
     private int steptime;
-    private String comments;
+    private String comment;
     private String priority;
     private List<Integer> hasPic=new ArrayList();
     private String picName;
@@ -133,12 +133,12 @@ public class TestCaseContent {
 
     @Basic
     @Column(name = "COMMENTS")
-    public String getComments() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setComment(String comments) {
+        this.comment = comments;
     }
     @Basic
     @Column(name = "PRIORITY")

@@ -98,7 +98,7 @@
 <div class="row">
 <div class="col-lg--12" style="padding-left:60px;padding-right:60px"  class="btn-toolbar" role="toolbar">
     <div class="btn-group">
-    <Button id="select" class="btn btn-warn" onclick="javascript:history.back(1);" >Back</button>
+<%--    <Button id="select" class="btn btn-warn" onclick="javascript:history.back(1);" >Back</button>--%>
         </div>
     <s:if test="#session.user.username !='tester' ">
         <s:if test="#session.user.role =='Leader' || #session.user.role =='Case Owner' || #session.user.role =='Admin' || #session.user.role =='Family Owner'">
@@ -221,6 +221,7 @@
                 <li style="color:red">P1 – MUST executing in every testing</li>
                 <li style="color:red">P2 – US&Localized APP Testing</li>
                 <li style="color:red">P3 – Function Test</li>
+
             </ui>
             <div class="row">
                 <div class="col-lg-offset-10" style="color:red">
@@ -267,18 +268,20 @@
                                     value="priority"/>
                             </p>
                             </td>
-                            <%--<td>--%>
-                                <%--<s:property value="steptime"/>--%>
-                            <%--</td>--%>
 
-                            <td style="word-wrap:break-word" long='<s:property value="comments" />' short=''>
-                                <s:if test = "comments.contains('</a>')">
-                                 <a href=""><s:property
-                                    value="comments"/></a>
-                                    <s:else>
-                                    </s:else>
-                                </s:if>
+                            <td>
+                            <s:property
+                                    value="comment"/>
                             </td>
+
+<%--                            <td style="word-wrap:break-word" long='<s:property value="comment" />' short=''>--%>
+<%--                                <s:if test = "comment.contains('</a>')">--%>
+<%--                                 <a href=""><s:property--%>
+<%--                                    value="comment"/></a>--%>
+<%--                                    <s:else>--%>
+<%--                                    </s:else>--%>
+<%--                                </s:if>--%>
+<%--                            </td>--%>
                         </tr>
                     </s:iterator>
 

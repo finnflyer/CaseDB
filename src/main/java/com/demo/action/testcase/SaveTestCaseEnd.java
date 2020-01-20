@@ -48,7 +48,7 @@ public class SaveTestCaseEnd extends ActionSupport {
         caseInstkey = sessionMap.get("caseInstkey").toString();
         caseInfoInstkey = sessionMap.get("caseInfoInstkey").toString();
 
-        savePath = "C:\\CTDDataBase\\CasePics\\"+caseInstkey;
+        savePath = "D:\\CTDDataBase\\CasePics\\"+caseInstkey;
         File saveFile = new File(savePath);
         if(!saveFile.exists()){
             saveFile.mkdir();

@@ -21,6 +21,7 @@ public interface TestCaseService extends BaseService<TestCase> {
     Map<Integer,String>  findTestCaseModeAllForMap();
 
     List<LanguagesBean> findLanguageBeanAll();
+    List<TestCaseHistroy> findTestCaseHistoryAll();
 
     TestCaseInfo findTestCaseInfoByCaseInfoStkey(String key);
 

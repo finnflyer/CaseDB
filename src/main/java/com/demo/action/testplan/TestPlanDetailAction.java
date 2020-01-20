@@ -106,6 +106,7 @@ public class TestPlanDetailAction extends ActionSupport {
             EncryptKey(scb);
             if(scb!=null){
                 TestCaseInfo testcaseInfo = testCaseService.findTestCaseInfoByCaseKey(temp.getTestcaseinstkey());
+                //System.out.println("Debug"+ testcaseInfo.getExecutetime());
                 total = total + testcaseInfo.getExecutetime();
                 scb.setTpOrder(temp.getTporder());
                 SearchBeanCatoSetting(scb);

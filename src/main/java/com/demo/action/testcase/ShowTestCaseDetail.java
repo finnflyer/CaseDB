@@ -84,7 +84,7 @@ public class ShowTestCaseDetail extends ActionSupport {
     }
     public void eachStringforHtml(List<TestCaseContent> testCaseContents){
              for(TestCaseContent temp:testCaseContents){
-            temp.setComments(StringFormat.formatStrForHtml(temp.getComments()));
+            temp.setComment(StringFormat.formatStrForHtml(temp.getComment()));
             temp.setTestitem(StringFormat.formatStrForHtml(temp.getTestitem()));
             temp.setTestresult(StringFormat.formatStrForHtml(temp.getTestresult()));
             temp.setTeststep(StringFormat.formatStrForHtml(temp.getTeststep()));

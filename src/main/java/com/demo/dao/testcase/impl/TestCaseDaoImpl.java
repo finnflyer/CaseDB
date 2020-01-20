@@ -113,6 +113,13 @@ public class TestCaseDaoImpl extends BaseDaoImpl<TestCase> implements TestCaseDa
     }
 
     @Override
+    public List<TestCaseHistroy> findTestCaseHistoryAll() {
+        String hql  = "from TestCaseHistory as t where 1=1";
+        Query query = getSession().createQuery(hql);
+        return query.getResultList();
+    }
+
+    @Override
     public void saveTestCaseContent(TestCaseContent content) {
         this.getSession().save(content);
     }

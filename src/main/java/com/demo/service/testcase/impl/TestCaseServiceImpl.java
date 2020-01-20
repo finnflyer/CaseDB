@@ -124,6 +124,11 @@ public class TestCaseServiceImpl extends BaseServiceImpl<TestCase> implements Te
     }
 
     @Override
+    public List<TestCaseHistroy> findTestCaseHistoryAll() {
+        return testCaseDao.findTestCaseHistoryAll();
+    }
+
+    @Override
     public List<CaseLanguage> findCaseLanguageByCaseId(String key) {
         return testCaseDao.findCaseLanguageByCaseID(key);
     }

@@ -18,6 +18,7 @@ public interface TestCaseDao {
      TestCaseInfo findTestCaseInfoByCaseInfoStkey(String key);
      TestCaseInfo findTestCaseInfoByCasekey(String key);
      List<PictureBean> findPictureByCaseContentkey(String key);
+     List<TestCaseHistroy>  findTestCaseHistoryAll();
 
      void saveTestCaseInfo(TestCaseInfo info);
      void saveTestCaseContent(TestCaseContent content);
@@ -28,5 +29,6 @@ public interface TestCaseDao {
      void updateTestCaseInfo(TestCaseInfo info);
      void updateCaseLanguage(CaseLanguage temp);
      void updateCaseContent(TestCaseContent content);
+
 
 }
